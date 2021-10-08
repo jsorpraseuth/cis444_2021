@@ -11,24 +11,19 @@
 			setInterval( function(){ $('#hello').html("hello"); }, 500);
 			
 			// js for audio
-			var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
-			if (!isChrome){
-				$('#iframeAudio').remove()
-			}
-			else {
-				$('#playAudio').remove() // just to make sure that it will not have 2x audio in the background 
+			window.onload = function() {
+				var context = new AudioContext();
 			}
 		</script>
 		
 		<div class="fullscreen-bg">
-			<video loop autoplay poster="img/videoframe.jpg" class="fullscreen-bg__video">
+			<video loop muted autoplay poster="img/videoframe.jpg" class="fullscreen-bg__video">
 				<source src="static/rick.mp4" type="video/mp4">
 			</video>
 		</div>
 		
 		<!-- test audio -->
-		<iframe src="static/rick.mp3" allow="autoplay" style="display:none" id="iframeAudio"></iframe>
-		<audio autoplay loop  id="playAudio">
+		<audio autoplay>
 			<source src="static/rick.mp3">
 		</audio>
 		
