@@ -3,67 +3,57 @@
     <head>
         <!-- head definitions go here -->
 		<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-    </head>
-	
-	<style>
-		body {
-			height: 1000px;
-			background:linear-gradient(to top, #040308, #AD4A28, #DD723C, #FC7001, #DCB697, #9BA5AE, #3E5879, #020B1A);
-		}
-
-		.center {
-			text-align: center;
-		}
 		
-		.white {
-			text-color: white;
-		}
-
-		html::-webkit-scrollbar {
-			width: 10px;
-		}
-
-		html::-webkit-scrollbar-track {
-			background: rgb(179, 177, 177);
-			border-radius: 10px;
-		}
-
-		html::-webkit-scrollbar-thumb {
-			background: rgb(136, 136, 136);
-			border-radius: 10px;
-		}
-
-		html::-webkit-scrollbar-thumb:hover {
-			background: rgb(100, 100, 100);
-			border-radius: 10px;
-		}
-
-		html::-webkit-scrollbar-thumb:active {
-			background: rgb(68, 68, 68);
-			border-radius: 10px;
-		}
-	</style>
+		<style>
+			body { background-color:orange; }
+			
+			#snow{
+				background: none;
+				font-family: Androgyne;
+				background-image: url('static/pumpkin.png');
+				height: 100%;
+				left: 0;
+				position: absolute;
+				top: 0;
+				width: 100%;
+				z-index:1;
+				-webkit-animation: snow 1000s linear infinite;
+				-moz-animation: snow 1000s linear infinite;
+				-ms-animation: snow 1000s linear infinite;
+				animation: snow 1000s linear infinite;
+				-webkit-transform: translate3d(0,0,0);
+				-moz-transform: translate3d(0,0,0);
+				-ms-transform: translate3d(0,0,0);
+				-o-transform: translate3d(0,0,0);
+				transform: translate3d(0,0,0);
+			}
+			@keyframes snow {
+			  0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
+			  100% {background-position: 50000px 50000px, 10000px 20000px, -10000px 15000px;}          
+			}
+			@-moz-keyframes snow {
+			  0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
+			  100% {background-position: 50000px 50000px, 10000px 20000px, -10000px 15000px;}          
+			}
+			@-webkit-keyframes snow {
+			  0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
+			  100% {background-position: 50000px 50000px, 10000px 20000px, -10000px 15000px;}          
+			}
+			@-ms-keyframes snow {
+			  0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
+			  100% {background-position: 50000px 50000px, 10000px 20000px, -10000px 15000px;}          
+			} 
+		</style>
+    </head>
 	
     <body>
 		<script>
 		
 			setInterval( function() { $('#mytime').html("The client time is " + new Date()); }, 1000);
 			
-			var today = new Date();
-			var halloween = new Date(today.getFullYear(), 10, 31);
-			if (today.getMonth() == 10 && today.getDate() > 31) {
-				halloween.setFullYear(halloween.getFullYear() + 1)
-			}
-			var oneDay = 1000 * 60 * 60 * 24;
-			
-			var timeTil = halloween.getTime() - today.getTime() / oneDay;
-			
-			$('#halloween').html("Halloween is in " + timeTil + " days.");
-			
 		</script>
 		
-	    <h1 class="center white" id="mytime"></h1>
-	    <h1 class="center white">The server time is {{server_time}}</h1>
-		<h1 class="center white" id="halloween"></h1>
+	    <h1 id="mytime"></h1>
+	    <h1>The server time is {{server_time}}</h1>
     </body>
 </html>
