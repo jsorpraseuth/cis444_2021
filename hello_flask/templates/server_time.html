@@ -9,6 +9,13 @@
 				background-color: orange;
 			}
 			
+			h1 {
+				text-align: center;
+				position: absolute;
+				border-style: solid;
+				border-color: white;				
+			}
+			
 			#snow {
 				background: none;
 				font-family: Androgyne;
@@ -54,27 +61,11 @@
 	
     <body>
 		<script>
-			setInterval( function() { $('#mytime').html("The client time is " + new Date()); }, 500);
-			
-			var hDate = new Date("October 31, 2021 00:00:00");
-			var today = new Date();
-			var halloween = new Date(today.getFullYear(), 10, 31);
-			
-			if (today.getMonth() == 10 && today.getDate() > 31) {
-				halloween.setFullYear(halloween.getFullYear() + 1)
-			}
-			
-			var second = Math.ceil( (halloween.getTime() - today.getTime())/1000);
-			
-			setInterval( function() {
-				$('#halloween').html('Seconds until halloween: ' + second);	
-			}, 1000);
-			
+			setInterval( function() { $('#mytime').html("The client time is " + new Date()); }, 500);	
 		</script>
 		
 		<h1 id="mytime"></h1>
-	    <h1>The server time is {{server_time}}</h1>
-		<div id="halloween"></div>
+	    <h1>The server time is {{server_time}}</h1>	
 		
 		<div id="snow"></div>
 	    
