@@ -16,29 +16,20 @@
 				border-color: black;
 				border-background-color: white;
 			}
-			
-			#wrapper {
-				position: relative;
-			}
 
-			.content {
-				position: relative;
-			}
-
-			.background {
-				position: absolute;
+			.front {
+				z-index: 100
 			}
 			
 			#snow {
 				background: none;
-				font-family: Androgyne;
 				background-image: url('static/pumpkin.png'), url('static/pumpkin2.png'), url('static/pumpkin3.png');
 				height: 100%;
 				left: 0;
 				position: absolute;
 				top: 0;
 				width: 100%;
-				z-index:1;
+				z-index: 1;
 				-webkit-animation: snow 1000s linear infinite;
 				-moz-animation: snow 1000s linear infinite;
 				-ms-animation: snow 1000s linear infinite;
@@ -86,15 +77,11 @@
 		<script>
 			setInterval( function() { $('#mytime').html("The client time is " + new Date()); }, 500);	
 		</script>
-		
-		<div id="wrapper">
-			<div class="content">
-				<h1 id="mytime"></h1>
-				<h1>The server time is {{server_time}}</h1>	
-			</div>
-			<div id="snow">
-			</div>
-		</div>
+	
+		<h1 class="front" id="mytime"></h1>
+		<h1 class="front">The server time is {{server_time}}</h1>	
+			
+		<div id="snow"></div>
 	    
     </body>
 </html>
