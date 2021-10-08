@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
     <head>
-		<link rel="shortcut icon" type"image/x-icon" href="static/favicon.ico" />
+		<link rel="shortcut icon" type="image/x-icon" href="static/favicon.ico" />
+		<script src="static/toastr.js"></script>
 		<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 		
 		<style>
@@ -148,6 +149,22 @@
                 audio.play();
             }
 		</script>
+		
+		<script type="text/javascript">
+            toastr.options = {
+              "closeButton": true,
+              "debug": false,
+              "positionClass": "toast-bottom-right",
+              "showDuration": "1000",
+              "hideDuration": "1000",
+              "timeOut": "100000",
+              "extendedTimeOut": "100000",
+              "showEasing": "swing",
+              "hideEasing": "linear",
+              "showMethod": "fadeIn",
+              "hideMethod": "fadeOut"
+           }
+        </script>
 		
 		<div id="overlay" class="container front" onclick="off()">
             <a href='#'class='playBut'>
