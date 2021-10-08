@@ -71,69 +71,6 @@
 				background: transparent;
 			}
 			
-			.playBut {
-				display: inline-block;
-				position: absolute;
-				top: 30%;
-				left: 50%;
-				transform: translate(-50%, -50%);
-				-ms-transform: translate(-50%, -50%);
-				-webkit-transition: all 0.5s ease;
-			}
-			
-			.playBut .triangle {
-				-webkit-transition: all 0.7s ease-in-out;
-				stroke-dasharray: 240;
-				stroke-dashoffset: 480;
-				stroke: #FFF;
-				transform: translateY(0);
-			}
-
-			.playBut:hover .triangle {
-				stroke-dashoffset: 0;
-				opacity: 1;
-				stroke: #f8aa28;
-				animation: nudge 0.7s ease-in-out;
-			}
-			
-			@keyframes nudge {
-				0% {
-				transform: translateX(0);
-			  }
-				30% {
-				transform: translateX(-5px);
-			  }
-				50% {
-				transform: translateX(5px);
-			  }
-				70% {
-				transform: translateX(-2px);
-			  }
-				100% {
-				transform: translateX(0);
-			  }
-			}
-
-			.playBut:hover .circle {
-				stroke-dashoffset: 0;
-				opacity: 1;
-			}
-			
-			.container {
-				width: 100%;
-				height: 100%;
-				text-align: center;
-				background-color: rgba(0,0,0,0.8);
-			}
-
-			.circle {
-				stroke: #f8aa28;
-				stroke-dasharray: 650;
-				stroke-dashoffset: 650;
-				-webkit-transition: all 0.5s ease-in-out;
-				opacity: 0.3;
-			}
-			
 		</style>
     </head>
 	
@@ -142,45 +79,6 @@
 			setInterval( function() { $('#mytime').html("The client time is " + new Date()); }, 500);
 		</script>
 			
-		<script> <!-- For music play button -->
-			function off() {
-                document.getElementById("overlay").style.display = "none";
-                var audio = document.getElementById("spooky");
-                audio.play();
-            }
-		</script>
-		
-		<script type="text/javascript">
-            toastr.options = {
-              "closeButton": true,
-              "debug": false,
-              "positionClass": "toast-bottom-right",
-              "showDuration": "1000",
-              "hideDuration": "1000",
-              "timeOut": "100000",
-              "extendedTimeOut": "100000",
-              "showEasing": "swing",
-              "hideEasing": "linear",
-              "showMethod": "fadeIn",
-              "hideMethod": "fadeOut"
-           }
-        </script>
-		
-		<div id="overlay" class="container front" onclick="off()">
-            <a href='#'class='playBut'>
-                <svg version="1.1"
-                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
-                    x="0px" y="0px" width="213.7px" height="213.7px" viewBox="0 0 213.7 213.7" enable-background="new 0 0 213.7 213.7"
-                    xml:space="preserve">
-
-                    <polygon class='triangle' id="XMLID_18_" fill="none" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
-                        73.5,62.5 148.5,105.8 73.5,149.1 "/>
-
-                    <circle class='circle' id="XMLID_17_" fill="none" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" cx="106.8" cy="106.8" r="103.3"/>
-                </svg>
-            </a>
-        </div>
-		
 		<!-- original https://www.youtube.com/watch?v=IpGxnVNsVNg -->
 		<audio id="spooky" loop>
             <source src="static/spooky.mp3" type="audio/mpeg">
