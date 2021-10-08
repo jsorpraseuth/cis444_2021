@@ -1,4 +1,4 @@
-h1 {
+.1spook {
   font-family: "Open Sans", sans-serif;
   font-size: 13pt;
   font-weight: 600;
@@ -7,14 +7,14 @@ h1 {
   cursor: default;
 }
 
-h4 {
+.2spook {
   font-family: "Open Sans", sans-serif;
   font-size: 8pt;
   font-weight: 400;
   cursor: default;
 }
 
-h2 {
+.4spook {
   font-family: "Open Sans", sans-serif;
   font-size: 13pt;
   font-weight: 300;
