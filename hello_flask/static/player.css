@@ -1,27 +1,3 @@
-.1spook {
-  font-family: "Open Sans", sans-serif;
-  font-size: 13pt;
-  font-weight: 600;
-  text-transform: uppercase;
-  color: white;
-  cursor: default;
-}
-
-.2spook {
-  font-family: "Open Sans", sans-serif;
-  font-size: 8pt;
-  font-weight: 400;
-  cursor: default;
-}
-
-.4spook {
-  font-family: "Open Sans", sans-serif;
-  font-size: 13pt;
-  font-weight: 300;
-  color: white;
-  cursor: default;
-}
-
 .player {
 	height: 190px;
 	width: 430px;
