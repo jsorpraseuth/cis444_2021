@@ -10,21 +10,11 @@
 			setInterval( function(){ $('#mytime').html("Client Time is " + new Date()); }, 500);
 			setInterval( function(){ $('#hello').html("hello"); }, 500);
 			
-			var buttonClicked = false;
-
-			window.addEventListener('load',function(){
-				console.log(buttonClicked);
-				document.getElementById('randoButton').addEventListener('click',function(){
-					buttonClicked = true;
-				console.log(buttonClicked);
-				});
-			});
 		</script>
 		
 		
 		
-	    <h1 id="mytime"></h1>
-		<input type="button" id="randoButton" value="Test Button">
+	    <h1 class="center-text" id="mytime"></h1>
 	    <h1>Server Time is {{server_time}}</h1>
     </body>
 </html>
