@@ -2,17 +2,17 @@ body {
 	background-color: orange;
 }
 
-.front {
-	z-index: 100;
-}
-
-.center { 
+h1 { 
 	text-align: center;
 	color: black;
 	border: solid;
 	border-color: black;
 	background: white;
 	position: relative;
+}
+
+.front {
+	z-index: 100;
 }
 
 #snow {
