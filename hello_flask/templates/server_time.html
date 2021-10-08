@@ -2,20 +2,23 @@
 <html>
     <head>
         <!-- head definitions go here -->
-		<link rel="stylesheet" href="styles.css">
+		<link rel="stylesheet" href="static/styles.css">
 		<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     </head>
-    <body style="background-image": url('https://giphy.com/embed/2KZ2v2vifTGTvGg1fu/video')>
+    <body>
 		<script>
 			setInterval( function(){ $('#mytime').html("Client Time is " + new Date()); }, 500);
 			setInterval( function(){ $('#hello').html("hello"); }, 500);
 		</script>
 		
+		<div class="fullscreen-bg">
+			<video loop muted autoplay poster="img/videoframe.jpg" class="fullscreen-bg__video">
+				<source src="static/rick.mp4" type="video/mp4">
+			</video>
+		</div>
+		
 		<!-- test audio -->
-		<audio controls autoplay>
-			<source src="static/rick.mp3" type="audio/mpeg">
-			Your browser does not support the audio element.
-		</audio>
+		<embed src="static/rick.mp3" autostart="true">
 		
 	    <h1 id="mytime"></h1>
 	    <h2 id="hello"> </h2>
