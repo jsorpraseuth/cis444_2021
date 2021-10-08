@@ -10,26 +10,21 @@
 			setInterval( function(){ $('#mytime').html("Client Time is " + new Date()); }, 500);
 			setInterval( function(){ $('#hello').html("hello"); }, 500);
 			
-			// js for audio
-			window.onload = function() {
-				var context = new AudioContext();
-			}
+			var buttonClicked = false;
+
+			window.addEventListener('load',function(){
+				console.log(buttonClicked);
+				document.getElementById('randoButton').addEventListener('click',function(){
+					buttonClicked = true;
+				console.log(buttonClicked);
+				});
+			});
 		</script>
 		
-		<div class="fullscreen-bg">
-			<video loop muted autoplay poster="img/videoframe.jpg" class="fullscreen-bg__video">
-				<source src="static/rick.mp4" type="video/mp4">
-			</video>
-		</div>
 		
-		<!-- test audio -->
-		<iframe src="static/silence.mp3" allow="autoplay" style="display: none"></iframe>
-		<audio autoplay loop>
-			<source src="static/rick.mp3">
-		</audio>
 		
 	    <h1 id="mytime"></h1>
-	    <h2 id="hello"> </h2>
+		<input type="button" id="randoButton" value="Test Button">
 	    <h1>Server Time is {{server_time}}</h1>
     </body>
 </html>
