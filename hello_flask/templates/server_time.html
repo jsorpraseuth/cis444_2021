@@ -57,6 +57,16 @@
 			  0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
 			  100% {background-position: 50000px 50000px, 10000px 20000px, -10000px 15000px;}          
 			} 
+			
+			html {
+				overflow: scroll;
+				overflow-x: hidden;
+			}
+			::-webkit-scrollbar {
+				width: 0;  /* Remove scrollbar space */
+				background: transparent;  /* Optional: just make scrollbar invisible */
+			}
+			
 		</style>
     </head>
 	
