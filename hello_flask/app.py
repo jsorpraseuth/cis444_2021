@@ -13,7 +13,7 @@ IMGS_URL = {
             "PRD" : "http://d2cbuxq67vowa3.cloudfront.net/images"
             }
 
-CUR_ENV = "PRD"
+CUR_ENV = "DEV"
 
 @app.route('/') #endpoint
 def index():
