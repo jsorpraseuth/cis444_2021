@@ -56,13 +56,12 @@
 			}
 			var oneDay = 1000 * 60 * 60 * 24;
 			
-			setInterval( function() { $('halloween').html("Days until Halloween " + Math.ceil( (halloween.getTime() - today.getTime())/(oneDay)) ); }, 1000);
+			$('#halloween').html("Days until Halloween " + Math.ceil( (halloween.getTime() - today.getTime())/(oneDay)) );
 			
 		</script>
 		
 	    <h1 class="center white" id="mytime"></h1>
 	    <h1 class="center white">The server time is {{server_time}}</h1>
-		
 		<h1 class="center white" id="halloween"></h1>
     </body>
 </html>
