@@ -2,10 +2,7 @@
 <html>
     <head>
 		<link rel="shortcut icon" type="image/x-icon" href="static/favicon.ico" />
-		<link href="static/toastr.css" rel="stylesheet"/>
 		<link href="static/styles.css" rel="stylesheet"/>
-		<script src="static/audiostuff.js"</script>
-		<script src="static/toastr.js"></script>
 		<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 		
     </head>
@@ -15,47 +12,8 @@
 			setInterval( function() { $('#mytime').html("The client time is " + new Date()); }, 500);
 		</script>
 		
-		<script type="text/javascript">
-			function off() {
-                document.getElementById("overlay").style.display = "none";
-                var audio = document.getElementById("spooky");
-                audio.play();
-            }
-		</script>
-		
-		<script type="text/javascript">
-            toastr.options = {
-              "closeButton": true,
-              "debug": false,
-              "positionClass": "toast-bottom-right",
-              "showDuration": "1000",
-              "hideDuration": "1000",
-              "timeOut": "100000",
-              "extendedTimeOut": "100000",
-              "showEasing": "swing",
-              "hideEasing": "linear",
-              "showMethod": "fadeIn",
-              "hideMethod": "fadeOut"
-           }
-        </script>
-		
-		<div id="overlay" class="container" onclick="off()">
-            <a href='#'class='playBut'>
-                <svg version="1.1"
-                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
-                    x="0px" y="0px" width="213.7px" height="213.7px" viewBox="0 0 213.7 213.7" enable-background="new 0 0 213.7 213.7"
-                    xml:space="preserve">
-
-                    <polygon class='triangle' id="XMLID_18_" fill="none" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
-                        73.5,62.5 148.5,105.8 73.5,149.1 "/>
-
-                    <circle class='circle' id="XMLID_17_" fill="none" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" cx="106.8" cy="106.8" r="103.3"/>
-                </svg>
-            </a>
-        </div>
-		
 		<!-- original https://www.youtube.com/watch?v=IpGxnVNsVNg -->
-		<audio class="front" id="spooky" controls loop>
+		<audio class="audio" id="spooky" controls loop>
             <source src="static/spooky.mp3" type="audio/mpeg">
         </audio>
 	
