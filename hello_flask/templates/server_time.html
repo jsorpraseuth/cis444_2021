@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <!-- head definitions go here -->
 		<link rel="shortcut icon" type"image/x-icon" href="static/favicon.ico" />
 		<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 		
@@ -30,18 +29,22 @@
 				-o-transform: translate3d(0,0,0);
 				transform: translate3d(0,0,0);
 			}
+			
 			@keyframes snow {
 			  0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
 			  100% {background-position: 50000px 50000px, 10000px 20000px, -10000px 15000px;}          
 			}
+			
 			@-moz-keyframes snow {
 			  0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
 			  100% {background-position: 50000px 50000px, 10000px 20000px, -10000px 15000px;}          
 			}
+			
 			@-webkit-keyframes snow {
 			  0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
 			  100% {background-position: 50000px 50000px, 10000px 20000px, -10000px 15000px;}          
 			}
+			
 			@-ms-keyframes snow {
 			  0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
 			  100% {background-position: 50000px 50000px, 10000px 20000px, -10000px 15000px;}          
@@ -52,10 +55,26 @@
     <body>
 		<script>
 			setInterval( function() { $('#mytime').html("The client time is " + new Date()); }, 500);
+			
+			var hDate = new Date("October 31, 2021 00:00:00");
+			var today = new Date();
+			var halloween = new Date(today.getFullYear(), 10, 31);
+			
+			if (today.getMonth() == 10 && today.getDate() > 31) {
+				halloween.setFullYear(halloween.getFullYear() + 1)
+			}
+			
+			var second = Math.ceil( (halloween.getTime() - today.getTime())/1000);
+			
+			setInterval( function() {
+				$('#halloween').html('Seconds until halloween: ' + second);	
+			}, 1000);
+			
 		</script>
 		
 		<h1 id="mytime"></h1>
 	    <h1>The server time is {{server_time}}</h1>
+		<div id="halloween"></div>
 		
 		<div id="snow"></div>
 	    
