@@ -2,9 +2,44 @@
 <html>
     <head>
         <!-- head definitions go here -->
-		<link href="./styles.css" rel="stylesheet" type="text/css">
 		<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     </head>
+	
+	<style>
+		body {
+			height: 5000px;
+			background:linear-gradient(to top, #040308, #AD4A28, #DD723C, #FC7001, #DCB697, #9BA5AE, #3E5879, #020B1A);
+		}
+
+		.center {
+			text-align: center;
+		}
+
+		html::-webkit-scrollbar {
+			width: 10px;
+		}
+
+		html::-webkit-scrollbar-track {
+			background: rgb(179, 177, 177);
+			border-radius: 10px;
+		}
+
+		html::-webkit-scrollbar-thumb {
+			background: rgb(136, 136, 136);
+			border-radius: 10px;
+		}
+
+		html::-webkit-scrollbar-thumb:hover {
+			background: rgb(100, 100, 100);
+			border-radius: 10px;
+		}
+
+		html::-webkit-scrollbar-thumb:active {
+			background: rgb(68, 68, 68);
+			border-radius: 10px;
+		}
+	</style>
+	
     <body>
 		<script>
 			setInterval( function(){ $('#mytime').html("Client Time is " + new Date()); }, 500);
