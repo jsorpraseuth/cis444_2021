@@ -6,6 +6,15 @@ body {
 	z-index: 100;
 }
 
+.center { 
+	text-align: center;
+	color: black;
+	border: solid;
+	border-color: black;
+	background: white;
+	position: relative;
+}
+
 #snow {
 	background: none;
 	background-image: url('pumpkin.png'), url('pumpkin2.png'), url('pumpkin3.png');

@@ -15,22 +15,22 @@
 		</script>
 	
 		<!-- original https://www.youtube.com/watch?v=IpGxnVNsVNg -->
-		<div class="player">
+		<div class="front player">
 		   <ul>
-			  <li class="cover"><img src="static/skeletons.png"/></li>
-			  <li class="info">
+			  <li class="front cover"><img src="static/skeletons.png"/></li>
+			  <li class="front info">
 				 <h1>Plextro</h1>
 				 <h4>Youtube</h4>
 				 <h2>Spooky Scary Skeletons</h2>
 
-				 <div class="button-items">
+				 <div class="button-items front">
 					<audio id="music" preload="auto" loop="false">
 					   <source src="static/spooky.mp3" type="audio/mp3">
 					</audio>
 					<div id="slider"><div id="elapsed"></div></div>
 					<p id="timer">0:00</p>
-					<div class="controls">
-					   <span class="expend"><svg class="step-backward" viewBox="0 0 25 25" xml:space="preserve">
+					<div class="front controls">
+					   <span class="expendfront "><svg class="step-backward front" viewBox="0 0 25 25" xml:space="preserve">
 						  <g><polygon points="4.9,4.3 9,4.3 9,11.6 21.4,4.3 21.4,20.7 9,13.4 9,20.7 4.9,20.7"/></g>
 					   </svg></span>
 
@@ -49,7 +49,7 @@
 						  </g>
 					   </svg>
 
-					   <span class="expend"><svg class="step-foreward" viewBox="0 0 25 25" xml:space="preserve">
+					   <span class="expend front"><svg class="step-foreward front" viewBox="0 0 25 25" xml:space="preserve">
 						  <g><polygon points="20.7,4.3 16.6,4.3 16.6,11.6 4.3,4.3 4.3,20.7 16.7,13.4 16.6,20.7 20.7,20.7"/></g>
 						</svg></span>
 					</div>
@@ -58,8 +58,8 @@
 		   </ul>
 		</div>
 	
-		<h1 class="front" id="mytime"></h1>
-		<h1 class="front">The server time is {{server_time}}</h1>	
+		<h1 class="front center" id="mytime"></h1>
+		<h1 class="front center">The server time is {{server_time}}</h1>	
 			
 		<div id="snow"></div>
 	    
