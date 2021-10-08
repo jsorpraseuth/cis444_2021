@@ -11,9 +11,6 @@ body {
 	border-width: 50%;
 }
 
-$player-height: 190px;
-$player-width: 430px;
-
 h1 {
    font-family: 'Open Sans', sans-serif;
    font-size: 13pt;
@@ -47,9 +44,9 @@ h2 {
 }
 
 .player {
-   height: $player-height;
+   height: 190px;
    z-index: 100;
-   width: $player-width;
+   width: 430px;
    background-color: #1E2125;
    position: absolute;
    @include unselectable();
@@ -71,8 +68,8 @@ h2 {
    top: 0;
    left: 0;
    img {
-      height: $player-height;
-      width: $player-height;
+      height: 190px;
+      width: 190px;
    }
 }
 
