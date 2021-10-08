@@ -7,12 +7,15 @@
 	
 	<style>
 		body {
-			height: 5000px;
 			background:linear-gradient(to top, #040308, #AD4A28, #DD723C, #FC7001, #DCB697, #9BA5AE, #3E5879, #020B1A);
 		}
 
 		.center {
 			text-align: center;
+		}
+		
+		.white {
+			text-color: white;
 		}
 
 		html::-webkit-scrollbar {
@@ -42,11 +45,20 @@
 	
     <body>
 		<script>
-			setInterval( function(){ $('#mytime').html("Client Time is " + new Date()); }, 500);
-			setInterval( function(){ $('#hello').html("hello"); }, 500);
+		
+			setInterval( function() { $('#mytime').html("The client time is " + new Date()); }, 1000);
+			
+			var hDate = new Date("October 31, 2021 00:00:00");
+			
+			setInterval( function() {
+				$('halloween').html("Time until Halloween " + (hDate - new Date()) );
+			}, 1000);
+			
 		</script>
 		
-	    <h1 class="center" id="mytime"></h1>
-	    <h1>Server Time is {{server_time}}</h1>
+	    <h1 class="center white" id="mytime"></h1>
+	    <h1 class="center white">The server time is {{server_time}}</h1>
+		
+		<h1 class="center white" id="halloween"></h1>
     </body>
 </html>
