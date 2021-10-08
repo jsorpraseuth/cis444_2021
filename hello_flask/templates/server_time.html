@@ -48,11 +48,14 @@
 		
 			setInterval( function() { $('#mytime').html("The client time is " + new Date()); }, 1000);
 			
-			var hDate = new Date("October 31, 2021 00:00:00");
+			var today = new Date();
+			var halloween = new Date(today.getFullYear(), 10, 31);
+			if (today.getMonth() == 10 && today.getDate() > 31) {
+				halloween.setFullYear(halloween.getFullYear() + 1)
+			}
+			var oneDay = 1000 * 60 * 60 * 24;
 			
-			setInterval( function() {
-				$('halloween').html("Time until Halloween " + (hDate - new Date()) );
-			}, 1000);
+			$('halloween').html("Days until Halloween " + Math.ceil( (halloween.getTime() - today.getTime())/(oneDay)) );
 			
 		</script>
 		
