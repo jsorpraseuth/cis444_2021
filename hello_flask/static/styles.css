@@ -44,52 +44,49 @@ h2 {
 }
 
 .player {
-   height: 190px;
-   z-index: 100;
-   width: 430px;
-   background-color: #1E2125;
-   position: absolute;
-   @include unselectable();
-   top: 50%;
-   left: 50%;
-   transform: translate(-50%, -50%);
-   -webkit-transform: translate(-50%, -50%);
+	height: 190px;
+	z-index: 100;
+	width: 430px;
+	background-color: #1E2125;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	-webkit-transform: translate(-50%, -50%);
+}
 
-   ul {
-      list-style: none;
-      li {
-         display: inline-block;
-      }
-   }
+.player ul {
+	list-style: none;
+}
+
+.player li {
+	display: inline-block;
 }
 
 .cover {
    position: absolute;
    top: 0;
    left: 0;
-   img {
-      height: 190px;
-      width: 190px;
-   }
+}
+.cover img {
+	height: 190px;
+	width: 190px;
 }
 
-.info {
+.info h1 {
+	margin-top: 15px;
+	margin-left: 180px;
+	line-height: 0;
+}
 
-   h1 {
-      margin-top: 15px;
-      margin-left: 180px;
-      line-height: 0;
-   }
+.info h4 {
+	margin-left: 180px;
+	line-height: 20px;
+	color: #636367;
+}
 
-   h4 {
-      margin-left: 180px;
-      line-height: 20px;
-      color: #636367;
-   }
-
-   h2 {
-      margin-left: 180px;
-   }
+.info h2 {
+	margin-left: 180px;
 }
 
 .button-items {
@@ -100,14 +97,15 @@ h2 {
 	width: 182px;
 	height: 4px;
 	background: #151518;
-   border-radius: 2px;
-   div {
-      width: 4px;
-      height: 4px;
-      margin-top: 1px;
-      background: #EF6DBC;
-      border-radius: 2px;
-   }
+	border-radius: 2px;
+}
+
+#slider div {
+	width: 4px;
+	height: 4px;
+	margin-top: 1px;
+	background: #EF6DBC;
+	border-radius: 2px;
 }
 
 #timer {
@@ -119,44 +117,42 @@ h2 {
 }
 
 .controls {
-   margin-top: 20px;
-
-   svg:nth-child(2) {
-      margin-left: 5px;
-      margin-right: 5px;
-   }
+	margin-top: 20px;
+	margin-left: 5px;
+	margin-right: 5px;
 }
 
 #play {
-   padding: 0 3px;
-   width: 30px;
-   height: 30px;
-   x: 0px;
-   y: 0px;
-   enable-background: new 0 0 25 25;
+	padding: 0 3px;
+	width: 30px;
+	height: 30px;
+	x: 0px;
+	y: 0px;
+	enable-background: new 0 0 25 25;
+}
 
-   g {
-      stroke: #FEFEFE;
-      stroke-width: 1;
-      stroke-miterlimit: 10;
+#play g {
+	stroke: #FEFEFE;
+	stroke-width: 1;
+	stroke-miterlimit: 10;
+}
 
-      path {
-         fill: #FEFEFE;
-      }
-   }
+#play path {
+	fill: #FEFEFE;
 }
 
 #play:hover {
    cursor: pointer;
-   g {
-      stroke: #8F4DA9;
-      cursor: pointer;
+}
 
-      path {
-         fill: #9b59b6;
-         cursor: pointer;
-      }
-   }
+#play:hover g {
+	stroke: #8F4DA9;
+	cursor: pointer;
+
+}
+#play:hover path {
+	fill: #9b59b6;
+	cursor: pointer;
 }
 
 .step-backward {
@@ -166,23 +162,23 @@ h2 {
    y: 0px;
    enable-background: new 0 0 25 25;
    margin-bottom: 5px;
+}
 
-   g polygon {
-      fill: #FEFEFE;
-   }
+.step-backward g polygon {
+	fill: #FEFEFE;
 }
 
 .step-foreward {
-   width: 18px;
-   height: 18px;
-   x: 0px;
-   y: 0px;
-   enable-background: new 0 0 25 25;
-   margin-bottom: 5px;
+	width: 18px;
+	height: 18px;
+	x: 0px;
+	y: 0px;
+	enable-background: new 0 0 25 25;
+	margin-bottom: 5px;
+}
 
-   g polygon {
-      fill: #FEFEFE;
-   }
+.step-foreward g polygon {
+	fill: #FEFEFE;
 }
 
 #pause {
