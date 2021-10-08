@@ -16,7 +16,7 @@ h1 {
 
 #snow {
 	background: none;
-	background-image: url('static/pumpkin.png'), url('static/pumpkin2.png'), url('static/pumpkin3.png');
+	background-image: url('pumpkin.png'), url('pumpkin2.png'), url('pumpkin3.png');
 	height: 100%;
 	left: 0;
 	position: absolute;
