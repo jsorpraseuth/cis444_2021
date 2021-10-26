@@ -42,10 +42,10 @@ def create():
 		# important commit created user to db
 		db.commit()
 		print('User "' + form['username'] + '" created successfully.')
-		return render_template("index.html")
+		return render_template("index.html", verification="Account created successfully.")
 	else:
 		print('Error: "' + form['username'] + '" is already in use.')
-		return render_template("index.html")
+		return render_template("index.html", verification="Username is already in use.")
 
 # verify user credentials	
 @app.route('/verify', methods=['POST', 'GET'])
@@ -58,15 +58,15 @@ def verify():
 	# if user does not exists
 	if cur.fetchone() is None:
 		print('Error: "' + form['username'] + '" does not exist.')
-		return render_template("index.html")
+		return render_template("index.html", verification="Username does not exist.")
 	else:
 		encrypt = cur.fetchone()[2]
 		if bcrypt.checkpw(bytes(form['password'], 'utf-8'), bytes(encrypt, 'utf-8')) == True:
 			print('User "' + form['username'] + '" has logged in successfully.')
+			return render_template("index.html", verification="Login Successful.")
 		else:
 			print("Incorrect password. Please try again.")
-			json_response(data={"error": "Incorrect Password."})
-	return index()
+			return render_template("index.html", verification="Incorrect Password. Please try again.")
 
 @app.route('/store') #endpoint
 def store():
