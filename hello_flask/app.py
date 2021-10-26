@@ -99,6 +99,4 @@ def hellodb():
     global_db_con.commit()
     return json_response(status="good")
 
-
 app.run(host='0.0.0.0', port=80)
-
