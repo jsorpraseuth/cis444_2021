@@ -1,15 +1,23 @@
 <!DOCTYPE html>
-
 <html>
-
     <head>
 		<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     </head>
-	
     <body>
 	    
-		<h1>This is the index page.</h1>
+		<div id="login">
+			<p>Please log into your account to view the webpage.<p>
+			<form action="/verify" method="POST">
+				<label for="username">Username:</label>
+				<input type="text" id="username" name="username" required><br>
+				
+				<label for "password">Password:</label>
+				<input type="password" id="password" name="password" required><br><br>
+				
+				<button type="submit" id="registerBtn" formaction="/create" method="GET">Register</button>
+				<button type="submit" id="loginBtn">Log In</button>
+			</form>
+		</div>
 		
     </body>
-	
 </html>
