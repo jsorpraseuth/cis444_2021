@@ -9,7 +9,7 @@ def get_db():
 	)
 
 def get_db_instance():  
-    db  = get_db()
-    cur  = db.cursor( )
-    
+    db = get_db()
+    cur = db.cursor()
+	
 	return db, cur
