@@ -60,8 +60,7 @@ def verify():
 		print('Error: "' + form['username'] + '" does not exist.')
 		return render_template("index.html", verification="Username does not exist.")
 	else:
-		encrypt = cur.fetchone()
-		if bcrypt.checkpw(bytes(form['password'], 'utf-8'), bytes(encrypt[2], 'utf-8')) == True:
+		if bcrypt.checkpw(bytes(form['password'], 'utf-8'), bytes(cur.fetchone()[2], 'utf-8')) == True:
 			print('User "' + form['username'] + '" has logged in successfully.')
 			return render_template("index.html", verification="Login Successful.")
 		else:
