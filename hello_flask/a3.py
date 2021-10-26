@@ -17,6 +17,9 @@ with open("secret", "r") as f:
 @app.route('/')	#endpoint
 def index():
     return render_template('index.html')
-	
+
+@app.route('/store') #endpoint
+def store():
+	return 'Store page web app!'
 
 app.run(host='0.0.0.0', port=80)
