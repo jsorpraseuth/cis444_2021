@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 from flask_json import FlaskJSON
 from db_a3 import get_db, get_db_instance
 
+import jwt
 import bcrypt
 
 IMGS_URL = {
@@ -50,7 +51,8 @@ def create():
 @app.route('/verify', methods=['POST', 'GET'])
 def verify():
 	cur = db.cursor()
-	user = jwt.encode({'username':request.form['username']}, JWT_SECRET, algorithm="HS256")
+	form = request.form
+	user = jwt.encode({'username':form['username']}, JWT_SECRET, algorithm="HS256")
 	# call database to see if user exists
 	cur.execute("SELECT * FROM users WHERE USERNAME = '" + user + "';")
 	# if user does not exists
