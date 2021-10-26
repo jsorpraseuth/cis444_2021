@@ -53,14 +53,16 @@ def verify():
 	cur = db.cursor()
 	form = request.form
 	user = jwt.encode({'username':form['username']}, JWT_SECRET, algorithm="HS256")
+	# stackoverflow fix :]
+	row = cur.fetchone()
 	# call database to see if user exists
 	cur.execute("SELECT * FROM users WHERE USERNAME = '" + user + "';")
 	# if user does not exists
-	if cur.fetchone() is None:
+	if row is None:
 		print('Error: "' + form['username'] + '" does not exist.')
 		return render_template("index.html", verification="Username does not exist.")
 	else:
-		if bcrypt.checkpw(bytes(form['password'], 'utf-8'), bytes(cur.fetchone()[2], 'utf-8')) == True:
+		if bcrypt.checkpw(bytes(form['password'], 'utf-8'), bytes(row[2], 'utf-8')) == True:
 			print('User "' + form['username'] + '" has logged in successfully.')
 			return render_template("index.html", verification="Login Successful.")
 		else:
