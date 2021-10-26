@@ -38,7 +38,7 @@ def create():
 	if cur.fetchone() is None:
 		user = jwt.encode({'username':form['username']}, JWT_SECRET, algorithm="HS256")
 		encrypted_pass = bcrypt.hashpw(bytes(form['password'], 'utf-8'), bcrypt.gensalt(11))
-		cur.execute("INSERT INTO users (username, password) values ('" + user + "', '" + encrypted_pass + "');")
+		cur.execute("INSERT INTO users (username, password, created_on) values ('" + user + "', '" + encrypted_pass + "', current_timestamp);")
 		# important commit created user to db
 		db.commit()
 		print('User "' + form['username'] + '" created successfully.')
