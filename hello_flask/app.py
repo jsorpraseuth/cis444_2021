@@ -28,7 +28,6 @@ global_db_con = get_db()
 with open("secret", "r") as f:
     JWT_SECRET = f.read()
 
-
 @app.route('/') #endpoint
 def index():
     return 'Web App with Python Caprice!' + USER_PASSWORDS['cjardin']
