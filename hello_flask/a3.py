@@ -36,7 +36,7 @@ def create():
 	cur.execute("SELECT * FROM users WHERE username = '" + jwt.encode({'username':form['username']}, JWT_SECRET, algorithm="HS256") + "';")
 	# if username is available, create credentials
 	if cur.fetchone() is None:
-		user = jwt.encode({'username':form['username']}, JWT_SECRET, algorith="HS256")
+		user = jwt.encode({'username':form['username']}, JWT_SECRET, algorithm="HS256")
 		encrypted_pass = bcrypt.hashpw(bytes(form['password'], 'utf-8'), bcrypt.gensalt(11))
 		cur.execute("INSERT INTO users (username, password) values ('" + user + "', '" + encrypted_pass.decode('utf-8') + "');")
 		# important commit created user to db
