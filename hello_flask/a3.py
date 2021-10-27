@@ -26,7 +26,6 @@ with open("secret", "r") as f:
 # index will be our login page
 @app.route('/')	# default endpoint
 def index():
-	if
     return render_template('index.html')
 
 #----------------------------------------#
