@@ -53,10 +53,10 @@ def verify():
 	cur = db.cursor()
 	form = request.form
 	user = jwt.encode({'username':form['username']}, JWT_SECRET, algorithm="HS256")
-	# stackoverflow fix :]
-	row = cur.fetchone()
 	# call database to see if user exists
 	cur.execute("SELECT * FROM users WHERE USERNAME = '" + user + "';")
+	# stackoverflow fix :]
+	row = cur.fetchone()
 	# if user does not exists
 	if row is None:
 		print('Error: "' + form['username'] + '" does not exist.')
