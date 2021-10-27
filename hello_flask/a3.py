@@ -23,9 +23,25 @@ db = get_db()
 with open("secret", "r") as f:
     JWT_SECRET = f.read()
 
-@app.route('/')	#endpoint
+# index will be our login page
+@app.route('/')	# default endpoint
 def index():
+	if
     return render_template('index.html')
+
+#----------------------------------------#
+# Store
+#----------------------------------------#
+@app.route('/store') # main store page
+def store(value):
+	if value is True:
+		return render_template('store.html')
+	else:
+		return render_template('index.html', verification="You must be logged in to access this page.")
+
+#----------------------------------------#
+# Account Creation and Verification
+#----------------------------------------#
 	
 # create user credentials
 @app.route('/create', methods=['POST'])
@@ -64,13 +80,9 @@ def verify():
 	else:
 		if bcrypt.checkpw(bytes(form['password'], 'utf-8'), bytes(row[2], 'utf-8')) == True:
 			print('User "' + form['username'] + '" has logged in successfully.')
-			return render_template("index.html", verification="Login Successful.")
+			return store(True)
 		else:
 			print("Incorrect password. Please try again.")
 			return render_template("index.html", verification="Incorrect Password. Please try again.")
-
-@app.route('/store') #endpoint
-def store():
-	return 'Store page web app!'
 
 app.run(host='0.0.0.0', port=80)
