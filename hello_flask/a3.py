@@ -31,14 +31,9 @@ def index():
 #----------------------------------------#
 # Store
 #----------------------------------------#
-@app.route('/store') # main store page
-def store(value):
-	if value is True:
-		return render_template('store.html')
-	elif value is None:
-		return render_template('index.html', verification="You must be logged in to access this page.")
-	else:
-		return render_template('index.html', verification="You must be logged in to access this page.")
+@app.route('/store')
+def store():
+	return render_template('store.html')
 
 #----------------------------------------#
 # Account Creation and Verification
@@ -81,7 +76,7 @@ def verify():
 	else:
 		if bcrypt.checkpw(bytes(form['password'], 'utf-8'), bytes(row[2], 'utf-8')) == True:
 			print('User "' + form['username'] + '" has logged in successfully.')
-			return store(True)
+			return render_template("index.html", verification="Login Successful.")
 		else:
 			print("Incorrect password. Please try again.")
 			return render_template("index.html", verification="Incorrect Password. Please try again.")
