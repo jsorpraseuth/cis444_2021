@@ -35,6 +35,8 @@ def index():
 def store(value):
 	if value is True:
 		return render_template('store.html')
+	elif value is None:
+		return render_template('index.html', verification="You must be logged in to access this page.")
 	else:
 		return render_template('index.html', verification="You must be logged in to access this page.")
 
