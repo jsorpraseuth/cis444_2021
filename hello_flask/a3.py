@@ -29,11 +29,11 @@ def index():
     return render_template('index.html')
 
 #----------------------------------------#
-# Store
+# Token Check
 #----------------------------------------#
-@app.route('/store')
-def store():
-	return render_template('store.html')
+@app.route('/token')
+def token():
+	return render_template('')
 
 #----------------------------------------#
 # Account Creation and Verification
