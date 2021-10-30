@@ -99,7 +99,7 @@ def getbooks():
 			print("Invalid token.")
 			return json_response(data={"message": "User is not logged in." }, status=404)
 			
-@app.route('/buyBook', methods=['POST']
+@app.route('/buyBook', methods=['POST'])
 def buyBook():
 	global JWT_SECRET
 	decodedUser = jwt.decode(request.form["jwt"], JWT_SECRET, algorithms=["HS256"])
