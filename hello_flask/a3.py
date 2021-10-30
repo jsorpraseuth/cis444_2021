@@ -16,24 +16,36 @@ CUR_ENV = "PRD"
 app = Flask(__name__)
 FlaskJSON(app)
 
-JWT_SECRET = None
-
+# postgres db
 db = get_db()
+
+# declare token
+TOKEN = None
+JWT_SECRET = None
 
 with open("secret", "r") as f:
     JWT_SECRET = f.read()
 
-# index will be our login page
+#----------------------------------------#
+# Default Page
+#----------------------------------------#
+
+# login page and store page
 @app.route('/')	# default endpoint
 def index():
     return render_template('index.html')
 
 #----------------------------------------#
-# Token Check
+# Token
 #----------------------------------------#
-@app.route('/token')
-def token():
-	return render_template('')
+
+# logout
+@app.route('/logout', methods=['GET'])
+def logout():
+	global TOKEN
+	TOKEN = None
+	print("User logged out successfully.")
+	return render_template("index.html", verification="Logged out successfully.")
 
 #----------------------------------------#
 # Account Creation and Verification
@@ -73,10 +85,13 @@ def verify():
 	if row is None:
 		print('Error: "' + form['username'] + '" does not exist.')
 		return render_template("index.html", verification="Username does not exist.")
+	# check password
 	else:
 		if bcrypt.checkpw(bytes(form['password'], 'utf-8'), bytes(row[2], 'utf-8')) == True:
 			print('User "' + form['username'] + '" has logged in successfully.')
-			return render_template("index.html", verification="Login Successful.")
+			global TOKEN
+			TOKEN = jwt.encode({"user_id": row[0]}, JWT_SECRET, algorithm="HS256")
+			return render_template("index.html", verification="Login Successful.", token=TOKEN)
 		else:
 			print("Incorrect password. Please try again.")
 			return render_template("index.html", verification="Incorrect Password. Please try again.")
