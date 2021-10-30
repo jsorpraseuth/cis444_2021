@@ -76,14 +76,14 @@
 			function check() {}
 			
 			function registerForm() {
-				document.getElementByClassName("formSubmit").value = "Register";
-				document.getElementByClassName("formHeader").innerHTML = "Create an account.";
+				document.getElementsByClassName("formSubmit").value = "Register";
+				document.getElementsByClassName("formHeader").innerHTML = "Create an account.";
 				$(".formLogin").show();
 				$(".formRegister").hide();
 			}
 			function loginForm() {
-				document.getElementByClassName("formSubmit").value = "Log In";
-				document.getElementByClassName("formHeader").innerHTML = "Please log into your account to view the store.";
+				document.getElementsByClassName("formSubmit").value = "Log In";
+				document.getElementsByClassName("formHeader").innerHTML = "Please log into your account to view the store.";
 				$(".formLogin").hide();
 				$(".formRegister").show();
 			}
