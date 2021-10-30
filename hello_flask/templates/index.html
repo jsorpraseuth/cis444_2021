@@ -75,19 +75,17 @@
 			
 			function check() {}
 			
-			function switch(val) {
-				if(val == "register") {
-					document.getElementByClassName("formSubmit").value = "Register";
-					document.getElementByClassName("formHeader").innerHTML = "Create an account.";
-					$(".formLogin").show();
-					$(".formRegister").hide();
-				}
-				if(val == "login") {
-					document.getElementByClassName("formSubmit").value = "Log In";
-					document.getElementByClassName("formHeader").innerHTML = "Please log into your account to view the store.";
-					$(".formLogin").hide();
-					$(".formRegister").show();
-				}
+			function registerForm() {
+				document.getElementByClassName("formSubmit").value = "Register";
+				document.getElementByClassName("formHeader").innerHTML = "Create an account.";
+				$(".formLogin").show();
+				$(".formRegister").hide();
+			}
+			function loginForm() {
+				document.getElementByClassName("formSubmit").value = "Log In";
+				document.getElementByClassName("formHeader").innerHTML = "Please log into your account to view the store.";
+				$(".formLogin").hide();
+				$(".formRegister").show();
 			}
 		</script>
 	
@@ -109,8 +107,8 @@
 				
 				<input class="formSubmit" type="submit" class="btn" value="Log In" onclick="check()">
 			</form>
-			<p class="formRegister" onclick="switch('register')">Don't have an account? Click here to register.</p>
-			<p class="formLogin" onclick="switch('login')">Already have an account? Click here to log in.</p>
+			<p class="formRegister" onclick="registerForm()">Don't have an account? Click here to register.</p>
+			<p class="formLogin" onclick="loginForm()">Already have an account? Click here to log in.</p>
 		</div>
 		
     </body>
