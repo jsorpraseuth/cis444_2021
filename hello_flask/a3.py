@@ -138,7 +138,7 @@ def create():
 		return render_template("index.html", verification="Username is already in use.")
 
 # verify user credentials	
-@app.route('/verify', methods=['POST', 'GET'])
+@app.route('/verify', methods=['POST'])
 def verify():
 	cur = db.cursor()
 	form = request.form
