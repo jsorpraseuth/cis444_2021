@@ -49,7 +49,7 @@ def login():
 		if bcrypt.checkpw(bytes(request.form["password"], "utf-8"), bytes(row[2], "utf-8")) == True:
 			print("Login by '" + request.form["username"] + "' authorized.")
 			global TOKEN, SECRET
-			TOKEN = jwt.encode("user_id": row[0], SECRET, algorithm="HS256")
+			TOKEN = jwt.encode({"user_id": row[0]}, SECRET, algorithm="HS256")
 			return json_response(data = {"jwt" : TOKEN})
 		else:
 			print("Incorrect password.")
