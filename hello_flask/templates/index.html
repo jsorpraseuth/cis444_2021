@@ -72,7 +72,7 @@
 			var token;
 			
 			async function loggedIn() {		
-				const response = await $.post("/" + action, { "username": document.getElementById("username").value, "password": document.getElementById("password").value }, "json");
+				const response = await $.post("/verify", { "username": document.getElementById("username").value, "password": document.getElementById("password").value }, "json");
 				
 				token = await response.data;
 				getBooks();
