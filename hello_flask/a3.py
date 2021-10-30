@@ -47,7 +47,7 @@ def logout():
 	global TOKEN
 	TOKEN = None
 	print("User logged out successfully.")
-	return render_template("index.html", verification="Logged out successfully.")
+	return json_response(data={"message": "Logged out successfully."})
 
 
 #----------------------------------------#
@@ -75,10 +75,10 @@ def create():
 		# important commit created user to db
 		db.commit()
 		print('User "' + form['username'] + '" created successfully.')
-		return render_template("index.html", verification="Account created successfully.")
+		return json_response(data={"message": "User created successfully."})
 	else:
 		print('Error: "' + form['username'] + '" already in use.')
-		return render_template("index.html", verification="Username is already in use.")
+		return json_response(data={"message": "Username is already in use."})
 
 # verify user credentials	
 @app.route('/verify', methods=['POST'])
@@ -93,16 +93,16 @@ def verify():
 	# if user does not exists
 	if row is None:
 		print('Error: "' + form['username'] + '" does not exist.')
-		return render_template("index.html", verification="Username does not exist.")
+		return json_response(data={"message": "Username does not exist."})
 	# check password
 	else:
 		if bcrypt.checkpw(bytes(form['password'], 'utf-8'), bytes(row[2], 'utf-8')) == True:
 			print('User "' + form['username'] + '" successful login.')
 			global TOKEN
 			TOKEN = jwt.encode({"user_id": row[0]}, JWT_SECRET, algorithm="HS256")
-			return jsonify(jwt=TOKEN, auth=True)
+			return json_response(data={"jwt": TOKEN})
 		else:
 			print("Incorrect password input.")
-			return render_template("index.html", verification="Incorrect Password. Please try again.")
+			return json_response(data={"message": "Incorrect Password. Please try again."})
 
 app.run(host='0.0.0.0', port=80)

@@ -47,22 +47,12 @@
 				width: 70%;
 				padding: 3px;
 			}
-
-			.btn {
-				background-color: light grey;
-				color: black;
-				border: 1px solid black;
-				padding: 6px 24px;
-				display: inline-block;
-				text-align: center;
-				text-decoration: none;
-			}
-
-			h1 { 
-				font-size: 17px;
-			}
 			
 			.store {
+				display: none;
+			}
+			
+			.formLogin {
 				display: none;
 			}
 		</style>
@@ -77,9 +67,26 @@
 			}
 			
 			function loggedIn() {
-				if(data.auth) {						
+				if(data.auth) {
 					$(".login").hide();
 					$(".store").show();
+				}
+			}
+			
+			function check() {}
+			
+			function switch(val) {
+				if(val == "register") {
+					document.getElementById("formSubmit").value = "Register";
+					document.getElementById("formHeader").innerHTML = "Create an account.";
+					$(".formLogin").show();
+					$(".formRegister").hide();
+				}
+				if(val == "login") {
+					document.getElementById("formSubmit").value = "Log In";
+					document.getElementById("formHeader").innerHTML = "Please log into your account to view the store.";
+					$(".formLogin").hide();
+					$(".formRegister").show();
 				}
 			}
 		</script>
@@ -92,18 +99,18 @@
 		</div>
 		
 		<div class="login">
-			<h1>Please log into your account to view the store.</h1>
-			<form action="/verify" method="POST">
+			<div class="formHeader">Please log into your account to view the store.</div>
+			<form>
 				<label class="formLabel" for="username">Username:</label>
 				<input class="formInput" type="text" id="username" name="username" placeholder="Username" required><br>
 				
 				<label class="formLabel" for="password">Password:</label>
 				<input class="formInput" type="password" id="password" name="password" placeholder="Password" required><br><br>
 				
-				<button type="submit" class="btn" formaction="/create" method="GET">Register</button>
-				<button type="submit" class="btn" onclick="loggedIn()">Log In</button>
+				<input class="formSubmit" type="submit" class="btn" value="Log In" onclick="check()">
 			</form>
-			<p>{{verification}}</p>
+			<div class="formRegister" onclick="switch('register')">Don't have an account? Click here to register.</div>
+			<div class="formLogin" onclick="switch('login')">Already have an account? Click here to log in.</div>
 		</div>
     </body>
 </html>
