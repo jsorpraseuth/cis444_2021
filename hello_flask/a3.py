@@ -1,9 +1,10 @@
 from flask import Flask, render_template, request
-from flask_json import FlaskJSON
+from flask_json import FlaskJSON, json_response
 from db_a3 import get_db, get_db_instance
 
 import jwt
 import bcrypt
+import json
 
 IMGS_URL = {
             "DEV" : "/static",
