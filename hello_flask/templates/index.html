@@ -68,6 +68,22 @@
 		</style>
     </head>
     <body>
+	<script>
+			function logout() {
+				fetch("/logout");
+				token = undefined;
+				$(".login").show();
+				$(".store").hide();
+			}
+			
+			function loggedIn() {
+				if(data.auth) {						
+					$(".login").hide();
+					$(".store").show();
+				}
+			}
+		</script>
+	
 		<div class="store">
 			<button type="submit" class="btn" onclick="logout()">Log Out</button>
 		
