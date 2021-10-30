@@ -74,10 +74,12 @@
 			async function loggedIn() {		
 				const response = await $.post("/verify", { "username": document.getElementById("username").value, "password": document.getElementById("password").value }, "json");
 				
-				token = await response.data;
-				getBooks();
-				$(".login").hide();
-				$(".store").show();
+				if (Response.status == 200) {
+					token = await response.data;
+					getBooks();
+					$(".login").hide();
+					$(".store").show();
+				}
 				
 				document.getElementById("username").value = "";
 				document.getElementById("password").value = "";
