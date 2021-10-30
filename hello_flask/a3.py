@@ -23,7 +23,7 @@ db = get_db()
 # Index page
 #----------------------------------------#
 # login page and store page
-@app.route('/')	# default endpoint
+@app.route("/")	# default endpoint
 def index():
 	return render_template("index.html")
 	
@@ -31,8 +31,32 @@ def index():
 # User Verification
 #----------------------------------------#
 
+# check if user exists, create jwt token from user id
+@app.route("/login", methods=["POST"])
+def login():
+	cur = db.cursor()
+	row = cur.fetchone()
+	
+	try:
+		cur.execute("select * from users where username = '" + request.form["username"] + "';")
+	except:
+		return json_response(data = {"error" : "Database could not be accessed."}, status = 500)
+	
+	if row is None:
+		print("Username '" + request.form["username"] + "' is invalid.")
+		return json_response(data = {"error" : "Username '" + request.form["username"] + "' does not exist."}, status = 404)
+	else:
+		if bcrypt.checkpw(bytes(request.form["password"], "utf-8"), bytes(row[2], "utf-8")) == True:
+			print("Login by '" + request.form["username"] + "' authorized.")
+			global TOKEN, SECRET
+			TOKEN = jwt.encode("user_id": row[0], SECRET, algorithm="HS256")
+			return json_response(data = {"jwt" : TOKEN})
+		else:
+			print("Incorrect password.")
+			return json_response(data = {"error" : "Incorrect passowrd."}, status = 404)
+
 # checks if username is taken, adds user to database
-@app.route('/signup', methods=["POST"])
+@app.route("/signup", methods=["POST"])
 def signup():
 	cur = db.cursor()
 	

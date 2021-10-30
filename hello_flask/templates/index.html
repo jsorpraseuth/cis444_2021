@@ -7,14 +7,30 @@
 				display: none;
 			}
 			
+			#formRegister {
+				text-decoration: none;
+				color: black;
+			}
+			#formRegister:visited {
+				text-decoration: none;
+				color: black;
+			}
+			
 			#formLogin {
 				display: none;
+				text-decoration: none;
+				color: black;
+			}
+			#formLogin:visited {
+				text-decoration: none;
+				color: black;
 			}
 		</style>
     </head>
     <body>
 		
 		<script>
+			var token;
 		
 			function registerForm() {
 				document.getElementById("formSubmit").value = "Sign Up";
@@ -31,11 +47,30 @@
 			}
 			
 			function logout() {
-			
+				fetch("/logout");
+				token = undefined;
+				$("#login").show();
+				$("#store").hide();
 			}
 		
-			function verify() {
+			async function verify() {
+				var text = document.getElementById("formHeader").innerHTML.toLowerCase();
+				var action = (text == "login") ? "login" : "signup";
 				
+				const response = await $.post("/" + action,
+					{ "username": document.getElementById("username").value, "password": document.getElementById("password").value }, "json");
+				if (action == "login" && response.status == 200) {
+					token = await response.data;
+					$("#login").hide();
+					$("#store").show();
+				}
+				else {
+					alert(response.data.message);
+				}
+				
+				document.getElementById("username").value = "";
+				document.getElementById("password").value = "";
+				return true;
 			}
 		
 		</script>
@@ -53,8 +88,8 @@
 			<input type="password" id="password" name="password" required>
 			
 			<input id="formSubmit" type="submit" value="login" onclick="verify()">
-			<a class="formRegister" href="" onclick="registerForm()">Don't have an account? Click here to sign up.</a>
-			<a class="formLogin" href="" onclick="loginForm()">Already have an account? Click here to log in.</a>
+			<a id="formRegister" href="" onclick="registerForm()">Don't have an account? Click here to sign up.</a>
+			<a id="formLogin" href="" onclick="loginForm()">Already have an account? Click here to log in.</a>
 		</div>
 		
     </body>
