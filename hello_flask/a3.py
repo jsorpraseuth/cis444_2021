@@ -24,8 +24,8 @@ db = get_db()
 #----------------------------------------#
 # login page and store page
 @app.route('/')	# default endpoint
-def home():
-	return 
+def index():
+	return render_template("index.html")
 	
 #----------------------------------------#
 # User Verification
