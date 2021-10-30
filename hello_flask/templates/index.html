@@ -68,32 +68,10 @@
 		</style>
     </head>
     <body>
-		<div class="store">
-			<button type="submit" class="btn" onclick="logout()">Log Out</button>
-		
-			<h1>If this shows that means you're logged in!</h1>
-			<div class="books"></div>
-		</div>
-		
-		<div class="login">
-			<h1>Please log into your account to view the store.</h1>
-			<form action="/verify" method="GET">
-				<label class="formLabel" for="username">Username:</label>
-				<input class="formInput" type="text" id="username" name="username" placeholder="Username" required><br>
-				
-				<label class="formLabel" for="password">Password:</label>
-				<input class="formInput" type="password" id="password" name="password" placeholder="Password" required><br><br>
-				
-				<button type="submit" class="btn" formaction="/create" method="GET">Register</button>
-				<button type="submit" class="btn" onclick="loggedIn()">Log In</button>
-			</form>
-			<p>{{verification}}</p>
-		</div>
-		
 		<script>
 			var token;
 			
-			async function loggedIn() {		
+			async function logIn() {		
 				const response = await $.post("/verify", { "username": document.getElementById("username").value, "password": document.getElementById("password").value },
 				"json");
 				
@@ -125,5 +103,25 @@
 				$(".store").hide();
 			}
 		</script>
+	
+		<div class="store">
+			<button type="submit" class="btn" onclick="logout()">Log Out</button>
+		
+			<h1>If this shows that means you're logged in!</h1>
+			<div class="books"></div>
+		</div>
+		
+		<div class="login">
+			<h1>Please log into your account to view the store.</h1>
+			<label class="formLabel" for="username">Username:</label>
+			<input class="formInput" type="text" id="username" name="username" placeholder="Username" required><br>
+			
+			<label class="formLabel" for="password">Password:</label>
+			<input class="formInput" type="password" id="password" name="password" placeholder="Password" required><br><br>
+			
+			<button type="submit" class="btn" formaction="/create" method="GET">Register</button>
+			<button type="submit" class="btn" onclick="logIn()">Log In</button>
+			<p>{{verification}}</p>
+		</div>
     </body>
 </html>
