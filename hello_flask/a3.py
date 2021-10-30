@@ -91,7 +91,7 @@ def verify():
 			print('User "' + form['username'] + '" has logged in successfully.')
 			global TOKEN
 			TOKEN = jwt.encode({"user_id": row[0]}, JWT_SECRET, algorithm="HS256")
-			return render_template("index.html", verification="Login Successful.", token=TOKEN)
+			return json_response(data={"jwt": TOKEN})
 		else:
 			print("Incorrect password. Please try again.")
 			return render_template("index.html", verification="Incorrect Password. Please try again.")

@@ -61,6 +61,10 @@
 			h1 { 
 				font-size: 17px;
 			}
+			
+			.store {
+				display: none;
+			}
 		</style>
     </head>
     <body>
@@ -68,9 +72,14 @@
 			
 			var token;
 			
-			function login() {
-				$(".store").show();
-				$(".login").hide();
+			async function check() {
+				const postResponse = await $.post("/" + action,
+				{ "username": document.getElementById("username").value, "password": document.getElementById("password").value }, "json");
+				if (action == "login" && postResponse.status == 200) {
+					token = await postResponse.data;
+					$(".login").hide();
+					$(".store").show();
+				}
 			}
 			
 			function logout() {
@@ -98,10 +107,9 @@
 				<input class="formInput" type="password" id="password" name="password" placeholder="Password" required><br><br>
 				
 				<button type="submit" class="btn" formaction="/create" method="GET">Register</button>
-				<button type="submit" class="btn" onclick="return login();">Log In</button>
+				<button type="submit" class="btn" onclick="return check();">Log In</button>
 			</form>
 			<p>{{verification}}</p>
-			<p>{{token}}</p>
 		</div>
 		
     </body>
