@@ -97,7 +97,7 @@ def getbooks():
 			return json_response(data=json.loads(message))
 		else:
 			print("Invalid token.")
-			return json_response(data=["message": "User is not logged in." }, status=404)
+			return json_response(data={"message": "User is not logged in." }, status=404)
 			
 @app.route('/buyBook', methods=['POST']
 def buyBook():
