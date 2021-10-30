@@ -75,7 +75,7 @@
 				const response = await $.post("/" + action,
 					{ "username": document.getElementById("username").value, "password": document.getElementById("password").value }, "json");
 				
-				if (action == "login" && response.status == 200) {
+				if (response.status == 200) {
 					token = await response.data;
 					getBooks();
 					$(".login").hide();
