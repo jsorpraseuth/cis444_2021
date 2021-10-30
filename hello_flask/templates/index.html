@@ -69,16 +69,32 @@
     </head>
     <body>
 		<script>
-			
 			var token;
 			
 			async function check() {
-				const postResponse = await $.post("/" + action,
-				{ "username": document.getElementById("username").value, "password": document.getElementById("password").value }, "json");
-				if (action == "login" && postResponse.status == 200) {
-					token = await postResponse.data;
+				const response = await $.post("/" + action,
+					{ "username": document.getElementById("username").value, "password": document.getElementById("password").value }, "json");
+				
+				if (action == "login" && response.status == 200) {
+					token = await response.data;
+					getBooks();
 					$(".login").hide();
 					$(".store").show();
+				}
+				
+				document.getElementById("username").value = "";
+				document.getElementById("password").value = "";
+				return true;
+			}
+			
+			async function getBooks() {
+				const response = await $.post("/getBooks", { "jwt": token.jwt }, "json");
+				for(i = 0; i < response.data.books.length; i++) {
+					document.getElementById("books").innerHTML += response.data.books[i].book_name + '<br>'
+						+ response.data.books[i].book_author + '<br>'
+						+ response.data.books[i].book_genre + '<br>'
+						+ response.data.books[i].book_price
+						+ '<button id="' + response.data.books[i].book_id + '" onclick="buyBook(this.id);">Buy</button>';
 				}
 			}
 			
@@ -95,6 +111,7 @@
 			<button type="submit" class="btn" onclick="return logout();">Log Out</button>
 		
 			<h1>If this shows that means you're logged in!</h1>
+			<div class="books"></div>
 		</div>
 		
 		<div class="login">
