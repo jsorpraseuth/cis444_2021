@@ -68,42 +68,6 @@
 		</style>
     </head>
     <body>
-	<script>
-			var token;
-			
-			async function loggedIn() {		
-				const response = await $.post("/verify", { "username": document.getElementById("username").value, "password": document.getElementById("password").value },
-				"json");
-				
-				if (response.status == 200) {
-					token = await response.data;
-					getBooks();
-					$(".login").hide();
-					$(".store").show();
-				}
-			}
-			
-			async function getBooks() {
-				const response = await $.post("/getBooks", { "jwt": token.jwt }, "json");
-				for(i = 0; i < response.data.books.length; i++) {
-					document.getElementById("books").innerHTML += response.data.books[i].book_name + '<br>'
-						+ response.data.books[i].book_author + '<br>'
-						+ response.data.books[i].book_genre + '<br>'
-						+ response.data.books[i].book_price
-						+ '<button id="' + response.data.books[i].book_id + '" onclick="buyBook(this.id);">Buy</button>';
-				}
-			}
-			
-			async function buyBook(id) {}
-			
-			function logout() {
-				fetch("/logout");
-				token = undefined;
-				$(".login").show();
-				$(".store").hide();
-			}
-		</script>
-	
 		<div class="store">
 			<button type="submit" class="btn" onclick="logout()">Log Out</button>
 		
