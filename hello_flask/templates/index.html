@@ -74,7 +74,7 @@
 			async function loggedIn() {		
 				const response = await $.post("/verify", { "username": document.getElementById("username").value, "password": document.getElementById("password").value }, "json");
 				
-				if (Response.status == 200) {
+				if (response.status == 200) {
 					token = await response.data;
 					getBooks();
 					$(".login").hide();
