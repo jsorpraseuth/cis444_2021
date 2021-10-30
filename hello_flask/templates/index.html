@@ -66,14 +66,7 @@
 				$(".store").hide();
 			}
 			
-			function loggedIn() {
-				if(data.auth) {
-					$(".login").hide();
-					$(".store").show();
-				}
-			}
-			
-			function verify() {
+			async function verify() {
 				var text = document.getElementById("formSubmit").value.toLowerCase();
 				var action = (text == "log in") ? "verify" : "create";
 				
