@@ -109,8 +109,13 @@
 				
 				<input class="formSubmit" type="submit" class="btn" value="Log In" onclick="check()">
 			</form>
-			<p class="formRegister" onclick="switch('register')">Don't have an account? Click here to register.</p>
-			<p class="formLogin" onclick="switch('login')">Already have an account? Click here to log in.</p>
+			<p class="formRegister">Don't have an account? Click here to register.</p>
+			<p class="formLogin">Already have an account? Click here to log in.</p>
 		</div>
+		
+		<script>
+			document.getElementById("formRegister").addEventListener("click", switch('register'));
+			document.getElementById("formLogin").addEventListener("click", switch('login'));
+		</script>
     </body>
 </html>
