@@ -3,122 +3,58 @@
     <head>
 		<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 		<style>
-			body {
-				background: linear-gradient(-45deg, #120C6E, #5E72EB, #FF9190, #FDC094);
-				background-size: 800% 800%;
-				animation: gradient 15s ease infinite;
-			}
-
-			@keyframes gradient {
-				0% {
-					background-position: 0% 50%;
-				}
-				50% {
-					background-position: 100% 50%;
-				}
-				100% {
-					background-position: 0% 50%;
-				}
-			}
-
-			.login {
-				border: 1px solid grey;
-				background: white;
-				margin-left: auto;
-				margin-right: auto;
-				margin-top: 200px;
-				width: 400px;
-				height: 250px;
-				text-align: center;
-				font-family: Roboto Light;
-				box-shadow: 5px 5px 10px rgba(0, 0, 0, .5);
-			}
-
-			.formLabel {
-				display: inline-block;
-				float: left;
-				margin-left: 55px;
-				padding: 2px;
-			}
-
-			.formInput {
-				display: inline-block;
-				float: middle;
-				width: 70%;
-				padding: 3px;
-			}
-			
-			.store {
+			#store {
 				display: none;
 			}
 			
-			.formLogin {
+			#formLogin {
 				display: none;
 			}
 		</style>
     </head>
     <body>
-	<script>
-			function logout() {
-				fetch("/logout");
-				token = undefined;
-				$(".login").show();
-				$(".store").hide();
-			}
-			
-			async function verify() {
-				var text = document.getElementById("formSubmit").value.toLowerCase();
-				var action = (text == "log in") ? "verify" : "create";
-				
-				const response = await $.post("/" + action, { "username": document.getElementById("username").value, "password": document.getElementById("password").value }, "json");
-				
-				if (action == "verify" && response.status == 200) {
-					token = await response.data;
-					$(".login").hide();
-					$(".store").show();
-				}
-				else {
-					alert(response.data.message);
-				}
-				document.getElementById("username").value = "";
-				document.getElementById("password").value = "";
-				return true;
-			}
-			
+		
+		<script>
+		
 			function registerForm() {
-				document.getElementsByClassName("formSubmit").value = "Register";
-				document.getElementsByClassName("formHeader").innerHTML = "Create an account.";
+				document.getElementById("formSubmit").value = "Sign Up";
+				document.getElementById("formHeader").innerHTML = "Sign Up.";
 				$(".formLogin").show();
 				$(".formRegister").hide();
 			}
+			
 			function loginForm() {
-				document.getElementsByClassName("formSubmit").value = "Log In";
-				document.getElementsByClassName("formHeader").innerHTML = "Please log into your account to view the store.";
+				document.getElementById("formSubmit").value = "Log In";
+				document.getElementById("formHeader").innerHTML = "Log In";
 				$(".formLogin").hide();
 				$(".formRegister").show();
 			}
-		</script>
-	
-		<div class="store">
-			<button type="submit" class="btn" onclick="logout()">Log Out</button>
+			
+			function logout() {
+			
+			}
 		
-			<h1>If this shows that means you're logged in!</h1>
-			<div class="books"></div>
+			function verify() {
+				
+			}
+		
+		</script>
+		
+		<div id="store">
+			<h1>Store Page</h1>
 		</div>
 		
-		<div class="login">
-			<div class="formHeader">Please log into your account to view the store.</div>
-			<form>
-				<label class="formLabel" for="username">Username:</label>
-				<input class="formInput" type="text" id="username" name="username" placeholder="Username" required><br>
-				
-				<label class="formLabel" for="password">Password:</label>
-				<input class="formInput" type="password" id="password" name="password" placeholder="Password" required><br><br>
-				
-				<input class="formSubmit" type="submit" class="btn" value="Log In" onclick="verify()">
-			</form>
-			<p class="formRegister" onclick="registerForm()">Don't have an account? Click here to register.</p>
-			<p class="formLogin" onclick="loginForm()">Already have an account? Click here to log in.</p>
+		<div id="login">
+			<h1 id="formHeader">Log In</h1>
+			<label for="username">Username</label>
+			<input type="text" id="username" name="username" required>
+			
+			<label for="password">Password</label>
+			<input type="password" id="password" name="password" required>
+			
+			<input id="formSubmit" type="submit" value="login" onclick="verify()">
+			<a class="formRegister" href="" onclick="registerForm()">Don't have an account? Click here to sign up.</a>
+			<a class="formLogin" href="" onclick="loginForm()">Already have an account? Click here to log in.</a>
 		</div>
 		
     </body>
