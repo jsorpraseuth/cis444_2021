@@ -52,6 +52,6 @@ def signup():
 			return json_response(data = {"error" : "Could not reach database to create user."})
 	else:
 		print("Username '" + request.form["username"] + "' taken,")
-		return json_response(data = {"error" : "Username '" + request.form["username"] + "' already in use."
+		return json_response(data = {"error" : "Username '" + request.form["username"] + "' already in use."})
 
 app.run(host = '0.0.0.0', port = 80)
