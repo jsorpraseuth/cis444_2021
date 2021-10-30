@@ -81,6 +81,9 @@
 					$(".login").hide();
 					$(".store").show();
 				}
+				else {
+					alert(response.data.message);
+				}
 			}
 			
 			async function getBooks() {
@@ -121,7 +124,6 @@
 			
 			<button type="submit" class="btn" formaction="/create" method="GET">Register</button>
 			<button type="submit" class="btn" onclick="logIn()">Log In</button>
-			<p>{{verification}}</p>
 		</div>
     </body>
 </html>
