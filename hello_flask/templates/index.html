@@ -101,8 +101,10 @@
 		</div>
 		
 		<script>
-			document.getElementById("formRegister").addEventListener("click", switch('register'));
-			document.getElementById("formLogin").addEventListener("click", switch('login'));
+			document.getElementById("formRegister").addEventListener("click", function(){
+				switch('register'); }, false);
+			document.getElementById("formLogin").addEventListener("click", function(){
+				switch('login'); }, false);
 			
 			function switch(val) {
 				if(val == "register") {
