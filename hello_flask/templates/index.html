@@ -75,7 +75,18 @@
 			
 			function check() {}
 			
-			
+			function registerForm() {
+				document.getElementById("formSubmit").value = "Register";
+				document.getElementById("formHeader").innerHTML = "Create an account.";
+				$(".formLogin").show();
+				$(".formRegister").hide();
+			}
+			function loginForm() {
+				document.getElementById("formSubmit").value = "Log In";
+				document.getElementById("formHeader").innerHTML = "Please log into your account to view the store.";
+				$(".formLogin").hide();
+				$(".formRegister").show();
+			}
 		</script>
 	
 		<div class="store">
@@ -96,30 +107,9 @@
 				
 				<input class="formSubmit" type="submit" class="btn" value="Log In" onclick="check()">
 			</form>
-			<p class="formRegister">Don't have an account? Click here to register.</p>
-			<p class="formLogin">Already have an account? Click here to log in.</p>
+			<p class="formRegister" onclick="registerForm()">Don't have an account? Click here to register.</p>
+			<p class="formLogin" onclick="loginForm()">Already have an account? Click here to log in.</p>
 		</div>
 		
-		<script>
-			document.getElementById("formRegister").addEventListener("click", function(){
-				switch('register'); }, false);
-			document.getElementById("formLogin").addEventListener("click", function(){
-				switch('login'); }, false);
-			
-			function switch(val) {
-				if(val == "register") {
-					document.getElementById("formSubmit").value = "Register";
-					document.getElementById("formHeader").innerHTML = "Create an account.";
-					$(".formLogin").show();
-					$(".formRegister").hide();
-				}
-				if(val == "login") {
-					document.getElementById("formSubmit").value = "Log In";
-					document.getElementById("formHeader").innerHTML = "Please log into your account to view the store.";
-					$(".formLogin").hide();
-					$(".formRegister").show();
-				}
-			}
-		</script>
     </body>
 </html>
