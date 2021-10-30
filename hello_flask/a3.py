@@ -82,7 +82,7 @@ def getbooks():
 		message = '{"books:['
 		while 1:
 			row = cur.fetchone()
-			if row is None
+			if row is None:
 				break
 			else:
 				if count > 0:
@@ -90,6 +90,7 @@ def getbooks():
 					
 				message += '{"book_id":' + str(row[0]) + ',"title:"' + str(row[1]) + ',"author:"' + str(row[2]) + ',"genre:"' + str(row[3]) + ',"price:"' + str(row[4]) + "}"
 				count += 1
+			
 			message += "]}"
 			
 			print("Sending list of books")
