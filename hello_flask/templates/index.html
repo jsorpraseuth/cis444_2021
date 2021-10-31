@@ -159,11 +159,8 @@
 				fetch("/logout");
 				token = undefined;
 				
-				// clear grabbed books
-				const destroy = "books" => {
-					document.getElementById("books").innerHTML = '';
-				}
-				
+				// empty books table
+				$("books").empty()
 				
 				$("#login").show();
 				$("#store").hide();
