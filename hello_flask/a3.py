@@ -125,7 +125,7 @@ def loadBooks():
 		print("Loading books")
 		return json_response(data = json.loads(message))
 	else:
-		print("Invalid token. Will not send book list."
+		print("Invalid token. Will not send book list.")
 		return json_response(data = {"message" : "Invalid session token."}, status = 404)
 	
 	
