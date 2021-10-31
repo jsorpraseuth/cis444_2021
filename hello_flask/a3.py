@@ -109,7 +109,7 @@ def loadBooks():
 			# grab books from db
 			#cur.execute("select * from books;")
 			cur.execute("select user_id from users")
-			cur.execute("select * from books where not exists (select from purchases where books.book_id = purchases.book_id and user_id = " + row[0] + ");")
+			cur.execute("select * from books where not exists (select from purchases where books.book_id = purchases.book_id and user_id = 5);")
 			print("Grabbed books from database that were not purchased by user.")
 		except:
 			print("Could not find books from database.")
