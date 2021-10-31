@@ -34,7 +34,7 @@ def index():
 # checks if username is taken, adds user to database
 @app.route("/signup", methods=["POST"])
 def signup():
-cur = db.cursor()
+	cur = db.cursor()
 	form = request.form
 	# call database to see if user exists
 	cur.execute("SELECT * FROM users WHERE username = '" + jwt.encode({'username':form['username']}, JWT_SECRET, algorithm="HS256") + "';")
