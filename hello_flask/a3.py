@@ -36,10 +36,13 @@ def index():
 def signup():
 	cur = db.cursor()
 	form = request.form
-	user = request.form["username"]
+	username = request.form["username"]
 	password = request.form["password"]
 	
-	cur.execute("select * from users where username = '" + username + "';")
+	try:
+		cur.execute("select * from users where username = '" + username + "';")
+	except:
+		return json_response(data = {"message" : "Database could not be accessed."}, status = 500)
 	
 	if cur.fetchone() is None:
 		saltedPassword = bcrypt.hashpw(bytes(password, "utf-8"), bcrypt.gensalt(11))
