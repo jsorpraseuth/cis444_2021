@@ -157,8 +157,7 @@
 			
 			function logout() {
 				// empty books table
-				$("books").empty();
-				$("books").html('');
+				pulledBooks.innerHTML = "";
 				
 				// delete session token
 				fetch("/logout");
@@ -194,7 +193,7 @@
 				const response = await $.post("/loadBooks", { "jwt": token.jwt }, "json");
 				for(i = 0; i < response.data.books.length; i++) {
 					// <button id="book_id" onclick="buyBook(this.id);">Buy</button>
-					document.getElementById("books").innerHTML += '<tr><td><button id="' + 
+					var pulledBooks = document.getElementById("books").innerHTML += '<tr><td><button id="' + 
 					response.data.books[i].book_id + '" onclick="buyBook(this.id);">Buy</button></td>'
 					+ '<td><strong class="bookTitle">' + response.data.books[i].book_name 
 					+ '</strong> by ' + response.data.books[i].book_author + '</td>'
