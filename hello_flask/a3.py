@@ -94,6 +94,14 @@ def validToken(tok):
 			print("Invalid token.")
 			return False
 
+# logout user
+@app.route("/logout", methods=["GET"])
+def logout():
+	global TOKEN
+	TOKEN = None
+	print("User logged out.")
+	return json_response(data = {"message": "Logged out."})
+
 #----------------------------------------#
 # Bookstore
 #----------------------------------------#
