@@ -84,7 +84,7 @@ def validateToken(tok):
 		server = jwt.decode(TOKEN, SECRET, algorithms=["HS256"])
 		client = jwt.decode(tok, SECRET, algorithms=["HS256"])
 		
-		if server == client
+		if server == client:
 			print("Token authorized.")
 			return True
 		else:
