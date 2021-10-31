@@ -60,7 +60,8 @@
 				const response = await $.post("/" + action,
 					{ "username": document.getElementById("username").value, "password": document.getElementById("password").value }, "json");
 				if (action == "login" && response.status == 200) {
-					token = await response.data;
+					token = await response.data
+					loadBooks();
 					$("#login").hide();
 					$("#store").show();
 				}
@@ -72,11 +73,23 @@
 				document.getElementById("password").value = "";
 				return true;
 			}
+			
+			async function loadBooks() {
+				const response = await $.post("/loadBooks", { "jwt": token.jwt }, "json");
+				for(i = 0; i < response.data.books.length; i++) {
+					document.getElementById("books").innerHTML += 
+					postResponse.data.books[i].book_name + '<br>'
+					+ postResponse.data.books[i].book_author + '<br>'
+					+ postResponse.data.books[i].book_genre + '<br>'
+					+ postResponse.data.books[i].book_price + '<br>';
+				}
+			}
 		
 		</script>
 		
 		<div id="store">
 			<h1>Store Page</h1>
+			<div id="books"></div>
 		</div>
 		
 		<div id="login">

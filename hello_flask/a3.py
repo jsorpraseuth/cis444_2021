@@ -55,20 +55,18 @@ def signup():
 @app.route("/login", methods=["POST"])
 def login():
 	cur = db.cursor()
-	
-	try:
-		cur.execute("select * from users where username = '" + request.form["username"] + "';")
-	except:
-		return json_response(data = {"message" : "Database could not be accessed."}, status = 500)
-	
+	form = request.form
+	# call database to see if user exists
+	cur.execute("select * from users where username = '" + request.form["username"] + "';")
 	row = cur.fetchone()
-	
+	# if username invalid, error
 	if row is None:
-		print("Username '" + request.form["username"] + "' is invalid.")
-		return json_response(data = {"message" : "Username '" + request.form["username"] + "' does not exist."}, status = 404)
+		print("Username '" + form["username"] + "' is invalid.")
+		return json_response(data = {"message" : "Username '" + form["username"] + "' does not exist."}, status = 404)
+	# username exists, make a token
 	else:
-		if bcrypt.checkpw(bytes(request.form["password"], "utf-8"), bytes(row[2], "utf-8")) == True:
-			print("Login by '" + request.form["username"] + "' authorized.")
+		if bcrypt.checkpw(bytes(form["password"], "utf-8"), bytes(row[2], "utf-8")) == True:
+			print("Login by '" + form["username"] + "' authorized.")
 			global TOKEN, SECRET
 			TOKEN = jwt.encode({"user_id": row[0]}, SECRET, algorithm="HS256")
 			return json_response(data = {"jwt" : TOKEN})
@@ -76,5 +74,57 @@ def login():
 			print("Incorrect password.")
 			return json_response(data = {"message" : "Incorrect password."}, status = 404)
 
+#----------------------------------------#
+# Bookstore
+#----------------------------------------#
+
+# load list of books after successful login
+@app.route("/loadBooks", methods=["POST"])
+def loadBooks():
+	cur = db.cursor()
+	
+	try:
+		# grab books from db
+		cursor.execute("select * from books;")
+	except:
+		return json_response(data = {"message" : "Could not find books from database."}, status = 500)
+		
+	# loop and show all books
+	count = 0
+	message = '{"books":['
+	while 1:
+		row = cur.fetchone()
+		if row is None:
+			break
+		else:
+			if count > 0:
+				message += ","
+			message += '{"book_name":' + str(row[1]) + ',"title":"' + str(row[2]) + + '","genre":' + str(row[3]) + '","price":' + str(row[4]) + "}"
+			count += 1
+			
+	message += "]}"
+	
+	print("Loading books")
+	return json_response(data = json.loads(message))
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 app.run(host = '0.0.0.0', port = 80)
