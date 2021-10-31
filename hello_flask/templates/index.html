@@ -129,8 +129,8 @@
 			async function loadBooks() {
 				const response = await $.post("/loadBooks", { "jwt": token.jwt }, "json");
 				for(i = 0; i < response.data.books.length; i++) {
-					document.getElementById("books").innerHTML += 
-					response.data.books[i].book_id + ' '
+					document.getElementById("books").innerHTML += '<button id="
+					response.data.books[i].book_id + '" onclick="buyBook(this.id);">Buy</button> '
 					+ response.data.books[i].book_name + ' '
 					+ response.data.books[i].book_author + ' '
 					+ response.data.books[i].book_genre + ' $'
@@ -148,6 +148,7 @@
 		<div id="store">
 			<h1>Store Page</h1>
 			<div id="books">
+				<div class="bookId">Book ID</div>
 				<div class="bookName">Title</div>
 				<div class="bookAuthor">Author</div>
 				<div class="bookGenre">Genre</div>
