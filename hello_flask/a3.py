@@ -34,28 +34,22 @@ def index():
 # checks if username is taken, adds user to database
 @app.route("/signup", methods=["POST"])
 def signup():
-	cur = db.cursor()
+cur = db.cursor()
 	form = request.form
-	username = request.form["username"]
-	password = request.form["password"]
-	
-	try:
-		cur.execute("select * from users where username = '" + username + "';")
-	except:
-		return json_response(data = {"message" : "Database could not be accessed."}, status = 500)
-	
+	# call database to see if user exists
+	cur.execute("SELECT * FROM users WHERE username = '" + jwt.encode({'username':form['username']}, JWT_SECRET, algorithm="HS256") + "';")
+	# if username is available, create credentials
 	if cur.fetchone() is None:
-		encryptedPassword = bcrypt.hashpw(bytes(form['password'], 'utf-8'), bcrypt.gensalt(11))
-		try:
-			cur.execute("insert into users (username, password, created_on) values '" + username + "', " + encryptedPassword + "', current_timestamp;")
-			db.commit()
-			print("Created user '" + username + "'.")
-			return json_response(data = {"message" : "User created successfully."})
-		except:
-			return json_response(data = {"message" : "Could not reach database to create user."})
+		user = jwt.encode({'username':form['username']}, JWT_SECRET, algorithm="HS256")
+		encrypted_pass = bcrypt.hashpw(bytes(form['password'], 'utf-8'), bcrypt.gensalt(11))
+		cur.execute("INSERT INTO users (username, password, created_on) values ('" + user + "', '" + encrypted_pass + "', current_timestamp);")
+		# important commit created user to db
+		db.commit()
+		print('User "' + form['username'] + '" created successfully.')
+		return render_template("index.html", verification="Account created successfully.")
 	else:
-		print("Username '" + username + "' taken,")
-		return json_response(data = {"message" : "Username '" + username + "' already in use."})
+		print('Error: "' + form['username'] + '" already in use.')
+		return render_template("index.html", verification="Username is already in use.")
 
 # check if user exists, create jwt token from user id
 @app.route("/login", methods=["POST"])
