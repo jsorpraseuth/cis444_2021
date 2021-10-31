@@ -46,7 +46,7 @@ def signup():
 		# important commit created user to db
 		db.commit()
 		print('User "' + form['username'] + '" created successfully.')
-		return json_response(data = {"message" : "User account created successfully.")
+		return json_response(data = {"message" : "User account created successfully."})
 	else:
 		print('Error: "' + form['username'] + '" already in use.')
 		return json_response(data = {"message" : "Username is already in use."}, status = 404)
