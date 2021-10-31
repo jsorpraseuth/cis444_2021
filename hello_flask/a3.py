@@ -10,14 +10,14 @@ import datetime
 app = Flask(__name__)
 FlaskJSON(app)
 
+# postgres db
+db = get_db()
+
 TOKEN = None
 SECRET = None
 
 with open("secret", "r") as f:
     SECRET = f.read()
-
-# postgres db
-db = get_db()
 
 #----------------------------------------#
 # Index page
@@ -30,6 +30,29 @@ def index():
 #----------------------------------------#
 # User Verification
 #----------------------------------------#
+
+# checks if username is taken, adds user to database
+@app.route("/signup", methods=["POST"])
+def signup():
+	cur = db.cursor()
+	form = request.form
+	user = request.form["username"]
+	password = request.form["password"]
+	
+	cur.execute("select * from users where username = '" + username + "';")
+	
+	if cur.fetchone() is None:
+		saltedPassword = bcrypt.hashpw(bytes(password, "utf-8"), bcrypt.gensalt(11))
+		try:
+			cur.execute("insert into users (username, password, created_on) values '" + username + "', " + saltedPassword.decode("utf-8") + "', current_timestamp;")
+			db.commit()
+			print("Created user '" + username + "'.")
+			return json_response(data = {"message" : "User created successfully."})
+		except:
+			return json_response(data = {"message" : "Could not reach database to create user."})
+	else:
+		print("Username '" + username + "' taken,")
+		return json_response(data = {"message" : "Username '" + username + "' already in use."})
 
 # check if user exists, create jwt token from user id
 @app.route("/login", methods=["POST"])
@@ -56,29 +79,5 @@ def login():
 			print("Incorrect password.")
 			return json_response(data = {"message" : "Incorrect passowrd."}, status = 404)
 
-# checks if username is taken, adds user to database
-@app.route("/signup", methods=["POST"])
-def signup():
-	cur = db.cursor()
-	user = request.form["username"]
-	password = request.form["password"]
-	
-	try:
-		cur.execute("select * from users where username = '" + username + "';")
-	except:
-		return json_response(data = {"message" : "Database could not be accessed."}, status = 500)
-	
-	if cur.fetchone() is None:
-		saltedPassword = bcrypt.hashpw(bytes(password, "utf-8"), bcrypt.gensalt(11))
-		try:
-			cur.execute("insert into users (username, password, created_on) values '" + username + "', " + saltedPassword.decode("utf-8") + "', current_timestamp;")
-			db.commit()
-			print("Created user '" + username + "'.")
-			return json_response(data = {"message" : "User created successfully."})
-		except:
-			return json_response(data = {"message" : "Could not reach database to create user."})
-	else:
-		print("Username '" + username + "' taken,")
-		return json_response(data = {"message" : "Username '" + username + "' already in use."})
 
 app.run(host = '0.0.0.0', port = 80)
