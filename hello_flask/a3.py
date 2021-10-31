@@ -114,7 +114,6 @@ def loadBooks():
 		count = 0
 		message = '{"books":['
 		while 1:
-			print("While loop to grab books. Count " + count)
 			row = cur.fetchone()
 			if row is None:
 				return json_response(data = {"message": "There are no books to display."}, status = 500)
