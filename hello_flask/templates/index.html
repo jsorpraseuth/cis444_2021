@@ -25,13 +25,6 @@
 				text-decoration: none;
 				color: black;
 			}
-			
-			#tester {
-				display: none;
-			}
-			#tester2 {
-				display: none;
-			}
 		</style>
     </head>
     <body>
@@ -87,8 +80,8 @@
 					document.getElementById("books").innerHTML += 
 					response.data.books[i].book_name + ' '
 					+ response.data.books[i].book_author + ' '
-					+ response.data.books[i].book_genre + ' '
-					+ response.data.books[i].book_price + ' ';
+					+ response.data.books[i].book_genre + '$'
+					+ response.data.books[i].book_price + '<br>';
 				}
 			}
 		
@@ -102,8 +95,6 @@
 				<div class="bookGenre">Genre</div>
 				<div class="bookPrice">Price</div>
 			</div>
-			<h1 id="tester">LoadBooks has loaded.</h1>
-			<h1 id="tester2">LoadBooks has loaded2.</h1>
 		</div>
 		
 		<div id="login">
