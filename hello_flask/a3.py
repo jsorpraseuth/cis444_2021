@@ -60,10 +60,13 @@ def login():
 @app.route("/signup", methods=["POST"])
 def signup():
 	cur = db.cursor()
-
-	row = cur.fetchone()
 	
-	if row is None:
+	try:
+		cur.execute("select * from users where username = '" + request.form["username"] + "';")
+	except:
+		return json_response(data = {"message" : "Database could not be accessed."}, status = 500)
+	
+	if cur.fetchone() is None:
 		saltedPassword = bcrypt.hashpw(bytes(request.form["password"], "utf-8"), bcrypt.gensalt(11))
 		try:
 			cur.execute("insert into users (username, password, created_on) values '" + request.form["username"] + "', " + saltedPassword.decode("utf-8") + "', current_timestamp;")
