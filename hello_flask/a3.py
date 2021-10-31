@@ -60,12 +60,7 @@ def login():
 @app.route("/signup", methods=["POST"])
 def signup():
 	cur = db.cursor()
-	
-	try:
-		cur.execute("select * from users where username = '" + request.form["username"] + "';")
-	except:
-		return json_response(data = {"message" : "Database could not be accessed."}, status = 500)
-	
+
 	row = cur.fetchone()
 	
 	if row is None:
