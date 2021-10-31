@@ -65,6 +65,21 @@
 				cursor: pointer;
 				border-radius: 5px; 
 			}
+			
+			#logOut {
+				padding: 10px 15px;
+				font-weight: bold;
+				background: #ddd; 
+				border: 0 none;
+				cursor: pointer;
+				border-radius: 5px;
+				float: right;
+				position: absolute;
+				right: 0;
+				top: 0;
+				margin-right: 10px;
+				margin-top: 10px;
+			}
 		
 			#store {
 				display: none;
@@ -189,7 +204,7 @@
 		</script>
 		
 		<div id="store">
-			
+			<input id="logOut" type="submit" value="Log Out" onclick="logout()">
 			<table>
 			<h1>Store Page</h1>
 				<thead>
