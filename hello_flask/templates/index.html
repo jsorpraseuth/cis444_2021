@@ -75,6 +75,7 @@
 			}
 			
 			async function loadBooks() {
+				log(token.jwt);
 				const response = await $.post("/loadBooks", { "jwt": token.jwt }, "json");
 				for(i = 0; i < 3; i++) {
 					document.getElementById("books").innerHTML += 
