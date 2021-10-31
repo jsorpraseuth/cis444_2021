@@ -107,6 +107,7 @@ def loadBooks():
 			cursor.execute("select * from books;")
 			print("Grabbed books from database.")
 		except:
+			print("Could not find books from database.")
 			return json_response(data = {"message" : "Could not find books from database."}, status = 500)
 			
 		# loop and show all books
