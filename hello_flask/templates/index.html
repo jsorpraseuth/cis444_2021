@@ -85,18 +85,13 @@
 				$("#tester").show();
 				const response = await $.post("/loadBooks", { "jwt": token.jwt }, "json");
 				$("#tester2").show();
-				if (response.data.books.length == 0) {
-					alert(response.data.message);
+				for(i = 0; i < response.data.books.length; i++) {
+					document.getElementById("books").innerHTML += 
+					response.data.books[i].book_name + '<br>'
+					+ response.data.books[i].book_author + '<br>'
+					+ response.data.books[i].book_genre + '<br>'
+					+ response.data.books[i].book_price + '<br>';
 				}
-				else {
-					for(i = 0; i < 3; i++) {
-						document.getElementById("books").innerHTML += 
-						response.data.books[i].book_name + '<br>'
-						+ response.data.books[i].book_author + '<br>'
-						+ response.data.books[i].book_genre + '<br>'
-						+ rsponse.data.books[i].book_price + '<br>';
-					}
-				}	
 			}
 		
 		</script>
