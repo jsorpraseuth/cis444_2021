@@ -116,8 +116,7 @@ def loadBooks():
 		while 1:
 			row = cur.fetchone()
 			if row is None:
-				print("There are no books to display")
-				return json_response(data = {"message": "There are no books to display."}, status = 500)
+				break
 			else:
 				print("Gathering books to display")
 				if count > 0:
