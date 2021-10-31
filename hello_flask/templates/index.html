@@ -197,13 +197,12 @@
 				for(i = 0; i < response.data.books.length; i++) {
 					// <button id="book_id" onclick="buyBook(this.id);">Buy</button>
 					pulledBooks = document.getElementById("books");
-					pulledBooks.insertAdjacentHTML('afterend','<tr><td><button id="' + 
+					pulledBooks.insertAdjacentHTML('beforeend', '<tr><td><button id="' + 
 					response.data.books[i].book_id + '" onclick="buyBook(this.id);">Buy</button></td>'
 					+ '<td><strong class="bookTitle">' + response.data.books[i].book_name 
 					+ '</strong> by ' + response.data.books[i].book_author + '</td>'
 					+ '<td>' + response.data.books[i].book_genre + '</td>'
-					+ '<td>$ ' + response.data.books[i].book_price + '</td></tr>';
-					additional.appendChild(pulledBooks));
+					+ '<td>$ ' + response.data.books[i].book_price + '</td></tr>');
 				}
 			}
 			
