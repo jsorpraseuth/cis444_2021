@@ -116,6 +116,7 @@ def loadBooks():
 		while 1:
 			row = cur.fetchone()
 			if row is None:
+				print("Finished gathering books")
 				break
 			else:
 				print("Gathering books to display")
