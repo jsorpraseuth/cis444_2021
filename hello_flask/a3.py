@@ -81,31 +81,35 @@ def login():
 # load list of books after successful login
 @app.route("/loadBooks", methods=["POST"])
 def loadBooks():
-	cur = db.cursor()
-	
-	try:
-		# grab books from db
-		cursor.execute("select * from books;")
-	except:
-		return json_response(data = {"message" : "Could not find books from database."}, status = 500)
+	if validToken(request.form["jwt"]):
+		cur = db.cursor()
 		
-	# loop and show all books
-	count = 0
-	message = '{"books":['
-	while 1:
-		row = cur.fetchone()
-		if row is None:
-			return json_response(data = {"message": "There are no books to display."}, status = 500)
-		else:
-			if count > 0:
-				message += ","
-			message += '{"book_name":' + str(row[1]) + ',"title":"' + str(row[2]) + + '","genre":' + str(row[3]) + '","price":' + str(row[4]) + "}"
-			count += 1
+		try:
+			# grab books from db
+			cursor.execute("select * from books;")
+		except:
+			return json_response(data = {"message" : "Could not find books from database."}, status = 500)
 			
-	message += "]}"
-	
-	print("Loading books")
-	return json_response(data = json.loads(message))
+		# loop and show all books
+		count = 0
+		message = '{"books":['
+		while 1:
+			row = cur.fetchone()
+			if row is None:
+				return json_response(data = {"message": "There are no books to display."}, status = 500)
+			else:
+				if count > 0:
+					message += ","
+				message += '{"book_name":' + str(row[1]) + ',"title":"' + str(row[2]) + + '","genre":' + str(row[3]) + '","price":' + str(row[4]) + "}"
+				count += 1
+				
+		message += "]}"
+		
+		print("Loading books")
+		return json_response(data = json.loads(message))
+	else:
+		print("Invalid token. Will not send book list."
+		return json_response(data = {"message" : "Invalid session token."}, status = 404)
 	
 	
 	

@@ -82,16 +82,8 @@
 			}
 			
 			async function loadBooks() {
-				$("#tester").show();
 				const response = await $.post("/loadBooks", { "jwt": token.jwt }, "json");
-				if(response.data.books.length == 0) {
-					return "equals zero";
-				}
-				else {
-					return "has some value";
-				}
 				for(i = 0; i < response.data.books.length; i++) {
-					$("#tester2").show();
 					document.getElementById("books").innerHTML += 
 					response.data.books[i].book_name + '<br>'
 					+ response.data.books[i].book_author + '<br>'
