@@ -156,12 +156,15 @@
 			var token;
 			
 			function logout() {
-				fetch("/logout");
-				token = undefined;
-				
+			
 				// empty books table
 				$("books").empty()
 				
+				// delete session token
+				fetch("/logout");
+				token = undefined;
+				
+				// hide store show login page
 				$("#login").show();
 				$("#store").hide();
 			}
