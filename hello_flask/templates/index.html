@@ -25,6 +25,10 @@
 				text-decoration: none;
 				color: black;
 			}
+			
+			#test {
+				display: none;
+			}
 		</style>
     </head>
     <body>
@@ -75,7 +79,6 @@
 			}
 			
 			async function loadBooks() {
-				log(token.jwt);
 				const response = await $.post("/loadBooks", { "jwt": token.jwt }, "json");
 				for(i = 0; i < 3; i++) {
 					document.getElementById("books").innerHTML += 
@@ -84,6 +87,7 @@
 					+ response.data.books[i].book_genre + '<br>'
 					+ rsponse.data.books[i].book_price + '<br>';
 				}
+				$("#tester").show();
 			}
 		
 		</script>
@@ -91,6 +95,7 @@
 		<div id="store">
 			<h1>Store Page</h1>
 			<div id="books"></div>
+			<h1 id="tester">LoadBooks has loaded.</h1>
 		</div>
 		
 		<div id="login">
