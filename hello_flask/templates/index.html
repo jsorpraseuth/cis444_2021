@@ -159,6 +159,8 @@
 			function logout() {
 				// empty books table
 				pulledBooks.innerHTML = "";
+				pulledBooks = document.getElementById('div_' + "books");
+				pulledBooks.parentNode.removeChild("books");
 				
 				// delete session token
 				fetch("/logout");
