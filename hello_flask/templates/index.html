@@ -80,12 +80,17 @@
 			
 			async function loadBooks() {
 				const response = await $.post("/loadBooks", { "jwt": token.jwt }, "json");
-				for(i = 0; i < 3; i++) {
-					document.getElementById("books").innerHTML += 
-					response.data.books[i].book_name + '<br>'
-					+ response.data.books[i].book_author + '<br>'
-					+ response.data.books[i].book_genre + '<br>'
-					+ rsponse.data.books[i].book_price + '<br>';
+				if (response.data.books.length == 0) {
+					alert(response.data.message);
+				}
+				else {
+					for(i = 0; i < 3; i++) {
+						document.getElementById("books").innerHTML += 
+						response.data.books[i].book_name + '<br>'
+						+ response.data.books[i].book_author + '<br>'
+						+ response.data.books[i].book_genre + '<br>'
+						+ rsponse.data.books[i].book_price + '<br>';
+					}
 				}
 				$("#tester").show();
 			}
@@ -94,7 +99,9 @@
 		
 		<div id="store">
 			<h1>Store Page</h1>
-			<div id="books"></div>
+			<div id="books">
+				<div class="bookName">Title</div></div class="bookAuthor"></div><div class="bookGenre"></div><div class="bookPrice"></div>
+			</div>
 			<h1 id="tester">LoadBooks has loaded.</h1>
 		</div>
 		
