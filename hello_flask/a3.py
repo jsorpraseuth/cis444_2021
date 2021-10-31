@@ -68,7 +68,7 @@ def login():
 		if bcrypt.checkpw(bytes(form["password"], "utf-8"), bytes(row[2], "utf-8")) == True:
 			print("Login by '" + form["username"] + "' authorized.")
 			# update last login by user
-			cur.execute("update users set last_login = current_timestamp where username = '" + form["username"] + '")
+			cur.execute("update users set last_login = current_timestamp where username = '" + form["username"] + "'")
 			global TOKEN, SECRET
 			TOKEN = jwt.encode({"user_id": row[0]}, SECRET, algorithm="HS256")
 			return json_response(data = {"jwt" : TOKEN})
