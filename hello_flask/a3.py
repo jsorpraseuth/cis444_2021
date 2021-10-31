@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
 from flask_json import FlaskJSON, json_response
-from db_a3 import get_db
+from db_a3 import get_db, get_db_instance
 
 import json
 import jwt
@@ -60,23 +60,25 @@ def login():
 @app.route("/signup", methods=["POST"])
 def signup():
 	cur = db.cursor()
+	user = request.form["username"]
+	password = request.form["password"]
 	
 	try:
-		cur.execute("select * from users where username = '" + request.form["username"] + "';")
+		cur.execute("select * from users where username = '" + username + "';")
 	except:
 		return json_response(data = {"message" : "Database could not be accessed."}, status = 500)
 	
 	if cur.fetchone() is None:
-		saltedPassword = bcrypt.hashpw(bytes(request.form["password"], "utf-8"), bcrypt.gensalt(11))
+		saltedPassword = bcrypt.hashpw(bytes(password, "utf-8"), bcrypt.gensalt(11))
 		try:
-			cur.execute("insert into users (username, password, created_on) values '" + request.form["username"] + "', " + saltedPassword.decode("utf-8") + "', current_timestamp;")
+			cur.execute("insert into users (username, password, created_on) values '" + username + "', " + saltedPassword.decode("utf-8") + "', current_timestamp;")
 			db.commit()
-			print("Created user '" + request.form["username"] + "'.")
+			print("Created user '" + username + "'.")
 			return json_response(data = {"message" : "User created successfully."})
 		except:
 			return json_response(data = {"message" : "Could not reach database to create user."})
 	else:
-		print("Username '" + request.form["username"] + "' taken,")
-		return json_response(data = {"message" : "Username '" + request.form["username"] + "' already in use."})
+		print("Username '" + username + "' taken,")
+		return json_response(data = {"message" : "Username '" + username + "' already in use."})
 
 app.run(host = '0.0.0.0', port = 80)
