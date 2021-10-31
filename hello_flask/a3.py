@@ -39,13 +39,13 @@ def login():
 	try:
 		cur.execute("select * from users where username = '" + request.form["username"] + "';")
 	except:
-		return json_response(data = {"error" : "Database could not be accessed."}, status = 500)
+		return json_response(data = {"message" : "Database could not be accessed."}, status = 500)
 	
 	row = cur.fetchone()
 	
 	if row is None:
 		print("Username '" + request.form["username"] + "' is invalid.")
-		return json_response(data = {"error" : "Username '" + request.form["username"] + "' does not exist."}, status = 404)
+		return json_response(data = {"message" : "Username '" + request.form["username"] + "' does not exist."}, status = 404)
 	else:
 		if bcrypt.checkpw(bytes(request.form["password"], "utf-8"), bytes(row[2], "utf-8")) == True:
 			print("Login by '" + request.form["username"] + "' authorized.")
@@ -54,7 +54,7 @@ def login():
 			return json_response(data = {"jwt" : TOKEN})
 		else:
 			print("Incorrect password.")
-			return json_response(data = {"error" : "Incorrect passowrd."}, status = 404)
+			return json_response(data = {"message" : "Incorrect passowrd."}, status = 404)
 
 # checks if username is taken, adds user to database
 @app.route("/signup", methods=["POST"])
@@ -64,7 +64,7 @@ def signup():
 	try:
 		cur.execute("select * from users where username = '" + request.form["username"] + "';")
 	except:
-		return json_response(data = {"error" : "Database could not be accessed."}, status = 500)
+		return json_response(data = {"message" : "Database could not be accessed."}, status = 500)
 	
 	row = cur.fetchone()
 	
@@ -74,11 +74,11 @@ def signup():
 			cur.execute("insert into users (username, password, created_on) values '" + request.form["username"] + "', " + saltedPassword.decode("utf-8") + "', current_timestamp;")
 			db.commit()
 			print("Created user '" + request.form["username"] + "'.")
-			return json_response(data = {"success" : "User created successfully."})
+			return json_response(data = {"message" : "User created successfully."})
 		except:
-			return json_response(data = {"error" : "Could not reach database to create user."})
+			return json_response(data = {"message" : "Could not reach database to create user."})
 	else:
 		print("Username '" + request.form["username"] + "' taken,")
-		return json_response(data = {"error" : "Username '" + request.form["username"] + "' already in use."})
+		return json_response(data = {"message" : "Username '" + request.form["username"] + "' already in use."})
 
 app.run(host = '0.0.0.0', port = 80)
