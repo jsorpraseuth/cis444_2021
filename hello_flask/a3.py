@@ -122,8 +122,6 @@ def loadBooks():
 					message += ","
 				message += '{"book_name":' + row[1] + ',"book_author":"' + row[2] + '","book_genre":' + row[3] + '","book_price":' + str(row[4]) + "}"
 				count += 1
-				print("Grabbed a book. " + title)
-				
 		message += "]}"
 		
 		print("Loading books")
