@@ -158,8 +158,13 @@
 			function logout() {
 				fetch("/logout");
 				token = undefined;
+				
 				// clear grabbed books
-				document.getElementById("books").innerHTML = "";
+				const destroy = "books" => {
+					document.getElementById("books").innerHTML = '';
+				}
+				
+				
 				$("#login").show();
 				$("#store").hide();
 			}
