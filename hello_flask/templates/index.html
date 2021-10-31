@@ -85,10 +85,10 @@
 				const response = await $.post("/loadBooks", { "jwt": token.jwt }, "json");
 				for(i = 0; i < response.data.books.length; i++) {
 					document.getElementById("books").innerHTML += 
-					response.data.books[i].book_name + '<br>'
-					+ response.data.books[i].book_author + '<br>'
-					+ response.data.books[i].book_genre + '<br>'
-					+ response.data.books[i].book_price + '<br>';
+					response.data.books[i].book_name + ' '
+					+ response.data.books[i].book_author + ' '
+					+ response.data.books[i].book_genre + ' '
+					+ response.data.books[i].book_price + ' ';
 				}
 			}
 		
