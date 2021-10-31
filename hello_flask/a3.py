@@ -74,6 +74,23 @@ def login():
 			print("Incorrect password.")
 			return json_response(data = {"message" : "Incorrect password."}, status = 404)
 
+# token validation
+def validateToken(tok):
+	global TOKEN, SECRET
+	if TOKEN is None:
+		print("No token available in server.")
+		return false
+	else:
+		server = jwt.decode(TOKEN, SECRET, algorithms=["HS256"])
+		client = jwt.decode(tok, SECRET, algorithms=["HS256"])
+		
+		if server == client
+			print("Token authorized.")
+			return True
+		else:
+			print("Invalid token.")
+			return False
+
 #----------------------------------------#
 # Bookstore
 #----------------------------------------#
