@@ -98,7 +98,7 @@ def validToken(tok):
 # load list of books after successful login
 @app.route("/loadBooks", methods=["POST"])
 def loadBooks():
-	if validToken(request.form["jwt"]):
+	if validToken(request.form["jwt"]) == True:
 		cur = db.cursor()
 		
 		try:
