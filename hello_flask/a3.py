@@ -35,12 +35,13 @@ def index():
 @app.route("/login", methods=["POST"])
 def login():
 	cur = db.cursor()
-	row = cur.fetchone()
 	
 	try:
 		cur.execute("select * from users where username = '" + request.form["username"] + "';")
 	except:
 		return json_response(data = {"error" : "Database could not be accessed."}, status = 500)
+	
+	row = cur.fetchone()
 	
 	if row is None:
 		print("Username '" + request.form["username"] + "' is invalid.")
@@ -59,13 +60,14 @@ def login():
 @app.route("/signup", methods=["POST"])
 def signup():
 	cur = db.cursor()
-	row = cur.fetchone()
 	
 	try:
 		cur.execute("select * from users where username = '" + request.form["username"] + "';")
 	except:
 		return json_response(data = {"error" : "Database could not be accessed."}, status = 500)
-		
+	
+	row = cur.fetchone()
+	
 	if row is None:
 		saltedPassword = bcrypt.hashpw(bytes(request.form["password"], "utf-8"), bcrypt.gensalt(11))
 		try:
