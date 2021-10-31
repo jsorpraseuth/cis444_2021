@@ -99,6 +99,7 @@ def validToken(tok):
 @app.route("/loadBooks", methods=["POST"])
 def loadBooks():
 	if validToken(request.form["jwt"]) == True:
+		print("Token is true, loading books")
 		cur = db.cursor()
 		
 		try:
