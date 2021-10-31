@@ -122,7 +122,7 @@ def loadBooks():
 				print("Gathering books to display")
 				if count > 0:
 					message += ","
-				message += '{"book_name":"' + row[1] + '","book_author":"' + row[2] + '","book_genre":"' + row[3] + '","book_price":' + str(row[4]) + "}"
+				message += '{"book_id":' + str(row[0] + ',"book_name":"' + row[1] + '","book_author":"' + row[2] + '","book_genre":"' + row[3] + '","book_price":' + str(row[4]) + "}"
 				count += 1
 		message += "]}"
 		
@@ -132,24 +132,20 @@ def loadBooks():
 		print("Invalid token. Will not send book list.")
 		return json_response(data = {"message" : "Invalid session token."}, status = 404)
 	
+@app.route("/buyBook", methods=["POST"])
+def buyBook():
+	global SECRET
+	cur = db.cursor()
+	form = request.form
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	decoded = jwt.decode(form["jwt"], SECRET, algorithms=["HS256"])
+	try:
+		cur.execute("insert into purchases (user_id, book_id, purchased_on) values ('" + str(decoded["user_id"]) + "','" + str(form["book_id"]) + ', current_timestamp);')
+		db.commit();
+		print("Purchased saved into database.")
+		return json_response(data = {"message" : "Book purchased successfully."})
+	except:
+		return json_response(data = {"message" : "Error while writing to database."}, status = 500)
 	
 
 app.run(host = '0.0.0.0', port = 80)

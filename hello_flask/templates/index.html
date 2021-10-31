@@ -117,11 +117,17 @@
 				const response = await $.post("/loadBooks", { "jwt": token.jwt }, "json");
 				for(i = 0; i < response.data.books.length; i++) {
 					document.getElementById("books").innerHTML += 
-					response.data.books[i].book_name + ' '
+					response.data.books[i].book_id + ' '
+					+ response.data.books[i].book_name + ' '
 					+ response.data.books[i].book_author + ' '
 					+ response.data.books[i].book_genre + ' $'
 					+ response.data.books[i].book_price + '<br>';
 				}
+			}
+			
+			async function buyBook(id) {
+				const response = await $.post("/buyBook", { "jwt": token.jwt, "book_id": id }, "json");
+				alert(response.data.message);
 			}
 		
 		</script>
