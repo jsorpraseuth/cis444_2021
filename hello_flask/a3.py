@@ -120,7 +120,7 @@ def loadBooks():
 			else:
 				if count > 0:
 					message += ","
-				message += '{"book_name":' + str(row[1]) + ',"title":"' + str(row[2]) + + '","genre":' + str(row[3]) + '","price":' + row[4] + "}"
+				message += '{"book_name":' + row[1] + ',"book_author":"' + str(row[2]) + + '","book_genre":' + row[3] + '","book_price":' + row[4] + "}"
 				count += 1
 				print("Grabbed a book. " + title)
 				
