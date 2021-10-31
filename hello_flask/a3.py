@@ -45,9 +45,9 @@ def signup():
 		return json_response(data = {"message" : "Database could not be accessed."}, status = 500)
 	
 	if cur.fetchone() is None:
-		saltedPassword = bcrypt.hashpw(bytes(password, "utf-8"), bcrypt.gensalt(11))
+		encryptedPassword = bcrypt.hashpw(bytes(form['password'], 'utf-8'), bcrypt.gensalt(11))
 		try:
-			cur.execute("insert into users (username, password, created_on) values '" + username + "', " + saltedPassword.decode("utf-8") + "', current_timestamp;")
+			cur.execute("insert into users (username, password, created_on) values '" + username + "', " + encryptedPassword + "', current_timestamp;")
 			db.commit()
 			print("Created user '" + username + "'.")
 			return json_response(data = {"message" : "User created successfully."})
