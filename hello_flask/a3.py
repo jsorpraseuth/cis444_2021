@@ -140,7 +140,8 @@ def buyBook():
 	
 	decoded = jwt.decode(form["jwt"], SECRET, algorithms=["HS256"])
 	try:
-		cur.execute("insert into purchases (user_id, book_id, purchased_on) values ('" + str(decoded["user_id"]) + "','" + str(form["book_id"]) + ', current_timestamp);')
+		# "insert into purchases (user_id, book_id, purchased_on) values ('user_id', 'book_id', current_timestamp)
+		cur.execute("insert into purchases (user_id, book_id, purchased_on) values ('" + str(decoded["user_id"]) + "','" + str(form["book_id"]) + "', current_timestamp);")
 		db.commit();
 		print("Purchased saved into database.")
 		return json_response(data = {"message" : "Book purchased successfully."})
