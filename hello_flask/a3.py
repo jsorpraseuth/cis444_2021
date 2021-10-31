@@ -107,8 +107,9 @@ def loadBooks():
 		
 		try:
 			# grab books from db
-			cur.execute("select * from books;")
-			print("Grabbed books from database.")
+			#cur.execute("select * from books;")
+			cur.execute("select * from users except all select book_id from purchases where purchases.user_id = 5")
+			print("Grabbed books from database that were not purchased by user.")
 		except:
 			print("Could not find books from database.")
 			return json_response(data = {"message" : "Could not find books from database."}, status = 500)
