@@ -37,7 +37,7 @@ def signup():
 	cur = db.cursor()
 	form = request.form
 	# call database to see if user exists
-	cur.execute("SELECT * FROM users WHERE username = '" + jwt.encode({'username':form['username']}, JWT_SECRET, algorithm="HS256") + "';")
+	cur.execute("SELECT * FROM users WHERE username = '" + jwt.encode({'username':form['username']}, SECRET, algorithm="HS256") + "';")
 	# if username is available, create credentials
 	if cur.fetchone() is None:
 		user = jwt.encode({'username':form['username']}, SECRET, algorithm="HS256")
@@ -46,10 +46,10 @@ def signup():
 		# important commit created user to db
 		db.commit()
 		print('User "' + form['username'] + '" created successfully.')
-		return render_template("index.html", verification="Account created successfully.")
+		return json_response(data = {"message" : "User account created successfully.")
 	else:
 		print('Error: "' + form['username'] + '" already in use.')
-		return render_template("index.html", verification="Username is already in use.")
+		return json_response(data = {"message" : "Username is already in use."}, status = 404)
 
 # check if user exists, create jwt token from user id
 @app.route("/login", methods=["POST"])
@@ -74,7 +74,7 @@ def login():
 			return json_response(data = {"jwt" : TOKEN})
 		else:
 			print("Incorrect password.")
-			return json_response(data = {"message" : "Incorrect passowrd."}, status = 404)
+			return json_response(data = {"message" : "Incorrect password."}, status = 404)
 
 
 app.run(host = '0.0.0.0', port = 80)
