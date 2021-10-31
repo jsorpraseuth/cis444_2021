@@ -37,10 +37,10 @@ def signup():
 	cur = db.cursor()
 	form = request.form
 	# call database to see if user exists
-	cur.execute("SELECT * FROM users WHERE username = '" + jwt.encode({'username':form['username']}, SECRET, algorithm="HS256") + "';")
+	cur.execute("SELECT * FROM users WHERE username = '" + request.form["username"] + "';")
 	# if username is available, create credentials
 	if cur.fetchone() is None:
-		user = jwt.encode({'username':form['username']}, SECRET, algorithm="HS256")
+		user = request.form["username"]
 		encrypted_pass = bcrypt.hashpw(bytes(form['password'], 'utf-8'), bcrypt.gensalt(11))
 		cur.execute("INSERT INTO users (username, password, created_on) values ('" + user + "', '" + encrypted_pass + "', current_timestamp);")
 		# important commit created user to db
