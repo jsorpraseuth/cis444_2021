@@ -104,6 +104,7 @@ def loadBooks():
 		try:
 			# grab books from db
 			cursor.execute("select * from books;")
+			print("Grabbed books from database.")
 		except:
 			return json_response(data = {"message" : "Could not find books from database."}, status = 500)
 			
@@ -111,6 +112,7 @@ def loadBooks():
 		count = 0
 		message = '{"books":['
 		while 1:
+			print("While loop to grab books. Count " + count)
 			row = cur.fetchone()
 			if row is None:
 				return json_response(data = {"message": "There are no books to display."}, status = 500)
@@ -119,6 +121,7 @@ def loadBooks():
 					message += ","
 				message += '{"book_name":' + str(row[1]) + ',"title":"' + str(row[2]) + + '","genre":' + str(row[3]) + '","price":' + str(row[4]) + "}"
 				count += 1
+				print("Grabbed a book. " + title)
 				
 		message += "]}"
 		
