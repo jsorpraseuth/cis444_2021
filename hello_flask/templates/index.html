@@ -84,8 +84,8 @@
 			async function loadBooks() {
 				$("#tester").show();
 				const response = await $.post("/loadBooks", { "jwt": token.jwt }, "json");
-				$("#tester2").show();
 				for(i = 0; i < response.data.books.length; i++) {
+					$("#tester2").show();
 					document.getElementById("books").innerHTML += 
 					response.data.books[i].book_name + '<br>'
 					+ response.data.books[i].book_author + '<br>'
