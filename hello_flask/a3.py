@@ -23,7 +23,7 @@ with open("secret", "r") as f:
 # Index page
 #----------------------------------------#
 # login page and store page
-@app.route("/")	# default endpoint
+@app.route("/", methods=["GET"])	# default endpoint
 def index():
 	return render_template("index.html")
 	
