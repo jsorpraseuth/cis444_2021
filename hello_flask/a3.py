@@ -75,7 +75,7 @@ def login():
 			return json_response(data = {"message" : "Incorrect password."}, status = 404)
 
 # token validation
-def validateToken(tok):
+def validToken(tok):
 	global TOKEN, SECRET
 	if TOKEN is None:
 		print("No token available in server.")
