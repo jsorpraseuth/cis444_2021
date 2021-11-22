@@ -9,7 +9,7 @@ def handle_request():
 	logger.debug("Buy Book Handle Request")
 	
 	cur = g.db.cursor()
-	book = request.form['book_id']
+	book = request.args.get('book_id')
 	print(book)
 	
 	try:
