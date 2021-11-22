@@ -36,7 +36,7 @@ def handle_request():
 		# clean insert
 		query = sql.SQL("insert into {table} ({fieldOne}, {fieldTwo}) values (%s, %s);").format(
 			table = sql.Identifer('users'),
-			fieldOne = sql.Identifier('username')
+			fieldOne = sql.Identifier('username'),
 			fieldTwo = sql.Identifier('password')
 		)
 		
