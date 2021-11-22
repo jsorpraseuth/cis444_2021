@@ -40,7 +40,7 @@ def handle_request():
 			fieldTwo = sql.Identifier('password')
 		)
 		
-		cur.execute(query, (user['sub'], encrypted_pass.decode('utf-8')))
+		cur.execute(query, (user['sub'], encrypted_pass))
 		# important commit created user to db
 		db.commit()
 		
