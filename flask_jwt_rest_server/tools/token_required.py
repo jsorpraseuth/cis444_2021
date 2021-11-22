@@ -24,20 +24,20 @@ def token_required(f):
         }
 
         if len(auth_headers) != 2:
-            return json_response(status_=401 ,message=invalid_msg)
+            return json_response(status_ = 401, message = invalid_msg)
 
         try:
             token = auth_headers[1]
             logger.debug("Got token")
-            data = jwt.decode(token,  secrets['JWT'], algorithms=["HS256"])
+            data = jwt.decode(token, secrets['JWT'], algorithms=["HS256"])
             #set global jwt_data
             g.jwt_data = data
             return f( *args, **kwargs)
         except jwt.ExpiredSignatureError:
-             return json_response(status_=401 ,message=expired_msg) # 401 is Unauthorized HTTP status code
+             return json_response(status_ = 401, message = expired_msg) # 401 is Unauthorized HTTP status code
         except (jwt.InvalidTokenError, Exception) as e:
             logger.debug(e)
-            return json_response(status_=401 ,message=expired_msg)
+            return json_response(status_ = 401, message = expired_msg)
 
     return _verify
 

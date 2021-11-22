@@ -44,14 +44,14 @@ def exec_secure_proc(proc_name):
     #see if we can execute it..
     resp = ""
     try:
-        fn = getattr(__import__('secure_calls.'+proc_name), proc_name)
+        fn = getattr(__import__('secure_calls.' + proc_name), proc_name)
         resp = fn.handle_request()
     except Exception as err:
         ex_data = str(Exception) + '\n'
         ex_data = ex_data + str(err) + '\n'
         ex_data = ex_data + traceback.format_exc()
         logger.error(ex_data)
-        return json_response(status_=500 ,data=ERROR_MSG)
+        return json_response(status_ = 500, data = ERROR_MSG)
 
     return resp
 
@@ -65,7 +65,7 @@ def exec_proc(proc_name):
     #see if we can execute it..
     resp = ""
     try:
-        fn = getattr(__import__('open_calls.'+proc_name), proc_name)
+        fn = getattr(__import__('open_calls.' + proc_name), proc_name)
         resp = fn.handle_request()
     except Exception as err:
         ex_data = str(Exception) + '\n'
