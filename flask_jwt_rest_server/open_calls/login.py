@@ -28,8 +28,8 @@ def handle_request():
 	cur.execute(query, (user['sub']))
 	row = cur.fetchone()
 	if not row:
-		print("Username '" + (user['sub']) + "' is invalid.")
-		return json_response(message ="Username '" + (user['sub']) + "' does not exist.", status = 404, authenticated = False)
+		print("Username '" + request.form['username'] + "' is invalid.")
+		return json_response(message ="Username '" + request.form['username'] + "' does not exist.", status = 404, authenticated = False)
 	# username exists, check password
 	else:
 		cur.execute(query, (user['sub']))
