@@ -13,12 +13,12 @@ def handle_request():
 	user = g.jwt_data
 	print(user)
 
-	query = sql.SQL("select * from {table} where not exists (select from {table2} where books.book_id = purchases.book_id and username = %s);").format(
+	query = sql.SQL("select * from {table} where not exists (select from {table2} where books.book_id = purchases.book_id and username = username);").format(
 		table = sql.Identifier('books'),
 		table2 = sql.Identifier('purchases')
 	)
 	
-	cur.execute(query, user)
+	cur.execute(query)
 	print("Grabbed books from database that were not purchased by user.")
 	db_books = cur.fetchall()
 	
