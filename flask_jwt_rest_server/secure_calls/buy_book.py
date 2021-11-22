@@ -31,4 +31,4 @@ def handle_request():
 		
 		return json_response(message = "Book purchased successfully.", token = create_token(g.jwt_data), authenticated = True)
 	except:
-		return json_response(message = "Error while writing to database.", status = 500, create_token(user), authenticated = True)
+		return json_response(message = "Error while writing to database.", token = create_token(user), status = 500, authenticated = True)
