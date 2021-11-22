@@ -11,6 +11,10 @@ def handle_request():
 	logger.debug("Buy Book Handle Request")
 	
 	cur = g.db.cursor()
+	print(book_id)
+	
+	book_id = request.form.get('book_id')
+	print(book_id)
 	
 	try:
 		# clean up query
