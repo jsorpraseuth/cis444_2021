@@ -8,7 +8,7 @@ from tools.logging import logger
 import bcrypt
 
 def handle_request():
-    logger.debug("SignUp Handle Request")
+	logger.debug("SignUp Handle Request")
 	db = g.db
 	cur = db.cursor()
 	form = request.form
