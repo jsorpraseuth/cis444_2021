@@ -22,14 +22,14 @@ def handle_request():
 	)
 	
 	# check if user exists
-	cur.execute(query, (user['sub'],))
+	cur.execute(query, (user['sub']))
 	row = cur.fetchone()
     if not row:
         print("Username '" + form["username"] + "' is invalid.")
 		return json_response(data = {"message" : "Username '" + form["username"] + "' does not exist."}, status = 404, authenticated = False)
 	# username exists, check password
 	else:
-		cur.execute(query, (user['sub'],))
+		cur.execute(query, (user['sub']))
 		# get password from db
 		user_hashed_password = cur.fetchone()[2]
 		
@@ -41,7 +41,7 @@ def handle_request():
 				key = sql.Indentifer('username')
 			)
 			
-			cur.execute(query, (user['sub'],))
+			cur.execute(query, (user['sub']))
 			db.commit();
 			
 			# user login authenticated, create token for user

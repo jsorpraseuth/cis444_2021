@@ -23,7 +23,7 @@ def handle_request():
 	)
 		
 	# check if user exists
-	cur.execute(query, (user['sub'],))
+	cur.execute(query, (user['sub']))
 	row = cur.fetchone()
 	
 	# if username is available, create credentials
