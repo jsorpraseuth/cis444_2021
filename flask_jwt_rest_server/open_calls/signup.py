@@ -33,6 +33,7 @@ def handle_request():
 	if row is None:
 		# encrypt the password
 		encrypted_pass = bcrypt.hashpw(bytes(password_from_user_form, 'utf-8'), bcrypt.gensalt(11))
+		encrypted_pass = encrypted_pass.decode('utf-8')
 		# clean insert
 		query = sql.SQL("insert into {table} ({fieldOne}, {fieldTwo}, {fieldThree}) values (%s, %s, current_timestamp);").format(
 			table = sql.Identifier('users'),
@@ -46,8 +47,8 @@ def handle_request():
 		db.commit()
 		
 		print('User "' + form['username'] + '" created successfully.')
-		return json_response(data = {"message" : "User account created successfully."}, token = create_token(user), authenticated = True)
+		return json_response(data = {message = "User account created successfully."}, token = create_token(user), authenticated = True)
 	else:
 		print('Error: "' + form['username'] + '" already in use.')
-		return json_response(data = {"message" : "Username is already in use."}, status = 404, authenticated = False)
+		return json_response(data = {message = "Username is already in use."}, status = 404, authenticated = False)
 
