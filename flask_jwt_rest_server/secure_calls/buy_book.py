@@ -28,6 +28,6 @@ def handle_request():
 		db.commit();
 		print("Purchased saved into database.")
 		
-		return json_response(message = "Book purchased successfully.", token = create_token(g.jwt_data), authenticated = True)
+		return json_response(message = "Book purchased successfully.", token = create_token(g.jwt_data))
 	except:
-		return json_response(message = "Error while writing to database.", token = create_token(user), status = 500, authenticated = True)
+		return json_response(message = "Error while writing to database.", token = create_token(g.jwt_data), status = 500)
