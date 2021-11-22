@@ -28,16 +28,20 @@ function secure_get_with_token(endpoint, data_to_send, on_success_callback, on_f
 var pulledBooks;
 
 function logout() {
+			
 	// empty books table
 	pulledBooks.innerHTML = "";
 	
 	// delete session token
 	fetch("/logout");
-	jwt = undefined;
+	jwt = null;
 	
 	// hide store show login page
 	$("#login").show();
 	$("#store").hide();
+	
+	alert("Log Out successful.");
+
 }
 
 function login() {
