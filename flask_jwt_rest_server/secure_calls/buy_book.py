@@ -24,7 +24,7 @@ def handle_request():
 			fieldThree = sql.Identifier('purchased_on')
 		)
 		
-		cur.execute(query, (g.jwt_data['sub'], book_id))
+		cur.execute(query, (g.jwt_data['sub'], id))
 		db.commit()
 		print("Purchased saved into database.")
 		
