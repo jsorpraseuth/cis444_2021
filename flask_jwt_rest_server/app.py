@@ -29,7 +29,7 @@ def init_new_env():
 		if 'secrets' not in g:
 			g.secrets = get_secrets()
 	else:
-		g.secrets = {"JWT": "KxQ(S#@>\"5=m$#58SgzD,+H+a73*pzKH,g5_"}
+		g.secrets = {"JWT": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqYW1lcyIsImV4cCI6MTYzNzU1ODY5OCwiaWF0IjoxNjM3NTU2ODk4fQ.HXWjVzgvKAfljSOP4pdCR4TxRWHGcyeFCnfPnTXR3MM"}
 
 # This gets executed by default by the browser if no page is specified
 # So.. we redirect to the endpoint we want to load the base page
