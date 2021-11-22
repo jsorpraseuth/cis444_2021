@@ -119,6 +119,8 @@ function buyBook(book_id) {
 		console.log("buy book"); 
 		console.log(data);
 		
+		// empty books table
+		pulledBooks.innerHTML = "";
 		// refresh the book listing
 		get_books();
 		
