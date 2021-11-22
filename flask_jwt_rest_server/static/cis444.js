@@ -82,7 +82,9 @@ function get_books() {
 			+ '<td>$ ' + response.data.books[i].book_price + '</td></tr>');
 		}
 	},
-		function(err){ console.log(err) });
+		function(err) { 
+			console.log(err) 
+		});
 }
 
 async function buyBook(id) {
