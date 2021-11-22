@@ -98,11 +98,11 @@ function get_books() {
 		// <button id="book_id" onclick="buyBook(this.id);">Buy</button>
 			pulledBooks = document.getElementById("books");
 			pulledBooks.insertAdjacentHTML('beforeend', '<tr><td><button id="' + 
-			response.data.books[i].book_id + '" onclick="buyBook(this.id);">Buy</button></td>'
-			+ '<td><strong class="bookTitle">' + response.data.books[i].book_name 
-			+ '</strong> by ' + response.data.books[i].book_author + '</td>'
-			+ '<td>' + response.data.books[i].book_genre + '</td>'
-			+ '<td>$ ' + response.data.books[i].book_price + '</td></tr>');
+			data.books[i].book_id + '" onclick="buyBook(this.id);">Buy</button></td>'
+			+ '<td><strong class="bookTitle">' + data.books[i].book_name 
+			+ '</strong> by ' + data.books[i].book_author + '</td>'
+			+ '<td>' + data.books[i].book_genre + '</td>'
+			+ '<td>$ ' + data.books[i].book_price + '</td></tr>');
 		}
 	},
 		function(err) { 
