@@ -110,7 +110,11 @@ function get_books() {
 		});
 }
 
-async function buyBook(id) {
-	const response = await $.post("/buyBook", { "jwt": token.jwt, "book_id": id }, "json");
-	alert(response.message);
+function buyBook(id) {
+	secure_get_with_token("/secure_api/buy_book", {"book_id" : id} , function(data) {
+		console.log("buy book"); 
+		console.log(data);
+		
+		alert(response.message);
+	});
 }
