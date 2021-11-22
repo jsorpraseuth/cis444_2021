@@ -42,7 +42,7 @@ function logout() {
 	$("#store").hide();
 }
 
-function verify() {
+async function verify() {
 	var text = document.getElementById("formHeader").innerHTML.toLowerCase();
 	var action = (text == "log in") ? "login" : "signup";
 	
@@ -112,5 +112,5 @@ function loadBooks() {
 
 async function buyBook(id) {
 	const response = await $.post("/buyBook", { "jwt": token.jwt, "book_id": id }, "json");
-	alert(response.data.message);
+	alert(response.message);
 }
