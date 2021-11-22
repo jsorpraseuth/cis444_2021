@@ -10,8 +10,9 @@ import simplejson as json
 def handle_request():
 	logger.debug("Get Books Handle Request")
 	cur = g.db.cursor()	
+	user = g.jwt_data
 
-	query = sql.SQL("select * from {table} where not exists (select from {table2} where books.book_id = purchases.book_id and username = test);").format(
+	query = sql.SQL("select * from {table} where not exists (select from {table2} where books.book_id = purchases.book_id and username = '" + user + "');").format(
 		table = sql.Identifier('books'),
 		table2 = sql.Identifier('purchases')
 	)
