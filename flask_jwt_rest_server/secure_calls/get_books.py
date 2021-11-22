@@ -9,13 +9,15 @@ import simplejson as json
 
 def handle_request():
 	logger.debug("Get Books Handle Request")
-	cur = g.db.cursor()
-	
-	query = sql.SQL("select * from {table};").format(
+	cur = g.db.cursor()	
+
+	query = sql.SQL("select * from {table} where no exists (select from {table2} where books.book_id = purchases.book_id and user_id = 1;").format(
 		table = sql.Identifier('books')
+		table2 = sql.Identifier('purchases')
 	)
 	
 	cur.execute(query)
+	print("Grabbed books from database that were not purchased by user.")
 	db_books = cur.fetchall()
 	
 	return json_response(token = create_token(g.jwt_data), books = db_books)
