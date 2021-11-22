@@ -5,7 +5,7 @@ function secure_get_with_token(endpoint, data_to_send, on_success_callback, on_f
 	xhr = new XMLHttpRequest();
 	
 	function setHeader(xhr) {
-		xhr.setRequestHeader('Authorization', 'Bearer: ' + jwt);
+		xhr.setRequestHeader('Authorization', 'Bearer:' + jwt);
 	}
 	
 	function get_and_set_new_jwt(data){
