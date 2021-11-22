@@ -5,7 +5,7 @@ from tools.token_tools import create_token
 from tools.logging import logger
 
 def handle_request():
-    logger.debug("Login Handle Request")
+	logger.debug("Login Handle Request")
 	db = g.db
 	cur = db.cursor()
 	form = request.form
