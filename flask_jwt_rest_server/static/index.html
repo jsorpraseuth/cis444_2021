@@ -10,33 +10,7 @@
     <body>
 
 		<script>
-			function send_form(){
-				$.post("/open_api/login", { "username":$('#username').val(), "password":$('#password').val()},
-					function(data, textStatus) {
-						//this gets called when browser receives response from server
-						console.log(data.token);
-						//Set global JWT
-						jwt = data.token;
-						//make secure call with the jwt
-						get_books();
-					}, "json").fail( function(response) {
-						//this gets called if the server throws an error
-						console.log("error");
-						console.log(response);
-					});
-				return false;
-			}
 
-			function get_books(){
-				 //make secure call with the jwt
-				secure_get_with_token("/secure_api/get_books", {} , function(data) {
-					console.log("got books"); 
-					console.log(data); 
-					$('#buybook').show();
-				},
-				function(err){ console.log(err) });
-			}
-			
 			function buy_book(book_id){
 				//make secure call with the jwt
 				secure_get_with_token("/secure_api/get_books", {"book_id" : book_id} , function(data) {

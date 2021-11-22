@@ -43,38 +43,54 @@ function logout() {
 	$("#store").hide();
 }
 
-async function verify() {
+function verify() {
 	var text = document.getElementById("formHeader").innerHTML.toLowerCase();
 	var action = (text == "log in") ? "login" : "signup";
 	
-	const response = await $.post("/" + action,
-		{ "username": document.getElementById("username").value, "password": document.getElementById("password").value }, "json");
-	if (action == "login" && response.status == 200) {
-		token = await response.data
-		loadBooks();
-		$("#login").hide();
-		$("#store").show();
-	}
-	else {
-		alert(response.data.message);
-	}
-	
-	document.getElementById("username").value = "";
-	document.getElementById("password").value = "";
-	return true;
+	$.post("/open_api/" + action, {"username" : $('#username').val(), "password" : $('#password').val()},
+		function(data, textStatus) {
+			if (action == "login" && response.status == 200) {
+				// store jwt
+				jwt = data.token
+				//this gets called when browser receives response from server
+				console.log(data.token);
+				//make secure call with the jwt
+				loadBooks();
+			}
+		}, "json").fail(function(response) {
+			//this gets called if the server throws an error
+			console.log("error");
+			console.log(response);
+			// alert user of error
+			alert(response.data.message);
+		});
+
+	return false;
 }
 
-async function loadBooks() {
-	const response = await $.post("/loadBooks", { "jwt": token.jwt }, "json");
-	for(i = 0; i < response.data.books.length; i++) {
+function loadBooks() {
+	//const response = await $.post("/loadBooks", { "jwt": token.jwt }, "json");
+	
+	secure_get_with_token("/secure_api/get_books", {} , function(data) {
+		console.log("got books"); 
+		console.log(data);
+		
+		$("#login").hide();
+		$('#store').show();
+		
+		// display books
+		for(i = 0; i < data.books.length; i++) {
 		// <button id="book_id" onclick="buyBook(this.id);">Buy</button>
-		pulledBooks = document.getElementById("books");
-		pulledBooks.insertAdjacentHTML('beforeend', '<tr><td><button id="' + 
-		response.data.books[i].book_id + '" onclick="buyBook(this.id);">Buy</button></td>'
-		+ '<td><strong class="bookTitle">' + response.data.books[i].book_name 
-		+ '</strong> by ' + response.data.books[i].book_author + '</td>'
-		+ '<td>' + response.data.books[i].book_genre + '</td>'
-		+ '<td>$ ' + response.data.books[i].book_price + '</td></tr>');
+			pulledBooks = document.getElementById("books");
+			pulledBooks.insertAdjacentHTML('beforeend', '<tr><td><button id="' + 
+			response.data.books[i].book_id + '" onclick="buyBook(this.id);">Buy</button></td>'
+			+ '<td><strong class="bookTitle">' + response.data.books[i].book_name 
+			+ '</strong> by ' + response.data.books[i].book_author + '</td>'
+			+ '<td>' + response.data.books[i].book_genre + '</td>'
+			+ '<td>$ ' + response.data.books[i].book_price + '</td></tr>');
+		}
+	},
+		function(err){ console.log(err) });
 	}
 }
 
