@@ -15,7 +15,6 @@ def handle_request():
 	book_id = request.form.get('book_id')
 	user_id = request.form.get('user_id')
 	
-	decoded = jwt.decode(form["jwt"], SECRET, algorithms=["HS256"])
 	try:
 		# clean up query
 		query = sql.SQL("insert into {table} ({fieldOne}, {fieldTwo}, {fieldThree}) values (%s, %s, current_timestamp);").format(
