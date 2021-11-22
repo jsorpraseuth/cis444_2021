@@ -13,7 +13,7 @@ def handle_request():
 		table = sql.Identifier('books')
 	)
 	
-	cur.execute()
+	cur.execute(query)
 	db_books = cur.fetchall()
 	
 	return json_response(token = create_token(g.jwt_data), books = db_books)
