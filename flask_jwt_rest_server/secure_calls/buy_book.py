@@ -22,7 +22,7 @@ def handle_request():
 		)
 		
 		cur.execute(query, (g.jwt_data['sub'], book_id))
-		db.commit();
+		db.commit()
 		print("Purchased saved into database.")
 		
 		return json_response(message = "Book purchased successfully.", token = create_token(g.jwt_data))
