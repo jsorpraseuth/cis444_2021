@@ -110,8 +110,8 @@ function get_books() {
 		});
 }
 
-function buyBook(id) {
-	secure_get_with_token("/secure_api/buy_book", {"book_id" : id.toString()} , function(data) {
+function buyBook(book_id) {
+	secure_get_with_token("/secure_api/buy_book", {"book_id" : book_id.toString()} , function(data) {
 		console.log("buy book"); 
 		console.log(data);
 		
