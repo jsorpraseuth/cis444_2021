@@ -5,6 +5,8 @@ from tools.token_tools import create_token
 
 from tools.logging import logger
 
+import simplejson as json
+
 def handle_request():
 	logger.debug("Get Books Handle Request")
 	cur = g.db.cursor()
