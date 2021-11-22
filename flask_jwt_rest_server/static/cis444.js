@@ -27,7 +27,6 @@ function secure_get_with_token(endpoint, data_to_send, on_success_callback, on_f
 	});
 }
 
-var token;
 var pulledBooks;
 
 function logout() {
@@ -36,7 +35,7 @@ function logout() {
 	
 	// delete session token
 	fetch("/logout");
-	token = undefined;
+	jwt = undefined;
 	
 	// hide store show login page
 	$("#login").show();
