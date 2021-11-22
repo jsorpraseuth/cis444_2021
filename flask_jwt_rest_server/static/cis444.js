@@ -98,8 +98,8 @@ function get_books() {
 		// <button id="book_id" onclick="buyBook(this.id);">Buy</button>
 			pulledBooks = document.getElementById("books");
 			pulledBooks.insertAdjacentHTML('beforeend', '<tr><td><button id="' + 
-			data.books[i].book_id + '" onclick="buyBook(this.id);">Buy</button></td>'
-			+ '<td><strong class="bookTitle">' + data.books[i].book_name 
+			data.books[i][0] + '" onclick="buyBook(this.id);">Buy</button></td>'
+			+ '<td><strong class="bookTitle">' + data.books[i][1] 
 			+ '</strong> by ' + data.books[i].book_author + '</td>'
 			+ '<td>' + data.books[i].book_genre + '</td>'
 			+ '<td>$ ' + data.books[i].book_price + '</td></tr>');
