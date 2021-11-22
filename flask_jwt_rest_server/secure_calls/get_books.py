@@ -7,13 +7,13 @@ from tools.logging import logger
 
 def handle_request():
     logger.debug("Get Books Handle Request")
-	cur = g.db.cursor();
+	cur = g.db.cursor()
 	
 	query = sql.SQL("select * from {table};").format(
 		table = sql.Identifier('books')
 	)
 	
-	cur.execute();
-	db_books = cur.fetchall();
+	cur.execute()
+	db_books = cur.fetchall()
 
     return json_response(token = create_token(g.jwt_data), books = db_books)
