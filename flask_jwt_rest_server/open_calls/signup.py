@@ -9,11 +9,11 @@ def handle_request():
 	db = g.db
 	cur = db.cursor()
 	form = request.form
-
-    password_from_user_form = request.form['password']
-    user = {
-            "sub" : request.form['username'] # sub is used by pyJwt as the owner of the token
-            }
+	
+	password_from_user_form = request.form['password']
+	user = {
+		"sub" : request.form['username'] # sub is used by pyJwt as the owner of the token
+	}
 	
 	# clean query to desired format
 	query = sql.SQL("select {field} from {table} where {key} = %s;").format(
