@@ -20,8 +20,8 @@ def handle_request():
 	
 	# clean query to desired format
 	query = sql.SQL("select * from {table} where {key} = %s;").format(
-		table = sql.Indentifer('users'),
-		key = sql.Indentifer('username')
+		table = sql.Identifer('users'),
+		key = sql.Identifer('username')
 	)
 	
 	# check if user exists
@@ -40,8 +40,8 @@ def handle_request():
 			print("Login by '" + form["username"] + "' authorized.")
 			# update last login by user
 			query = sql.SQL("update {table} set last_login = current_timestamp where {key} = %s;").format(
-				table = sql.Indentifer('users'),
-				key = sql.Indentifer('username')
+				table = sql.Identifer('users'),
+				key = sql.Identifer('username')
 			)
 
 			cur.execute(query, (user['sub']))

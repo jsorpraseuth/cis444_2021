@@ -20,9 +20,9 @@ def handle_request():
 	
 	# clean query to desired format
 	query = sql.SQL("select {field} from {table} where {key} = %s;").format(
-		field = sql.Indentifer('username'),
-		table = sql.Indentifer('users'),
-		key = sql.Indentifer('username'))
+		field = sql.Identifer('username'),
+		table = sql.Identifer('users'),
+		key = sql.Identifer('username'))
 	)
 		
 	# check if user exists
@@ -35,9 +35,9 @@ def handle_request():
 		encrypted_pass = bcrypt.hashpw(bytes(password_from_user_form), 'utf-8'), bcrypt.gensalt(11))
 		# clean insert
 		query = sql.SQL("insert into {table} ({fieldOne}, {fieldTwo}) values (%s, %s);").format(
-			table = sql.Indentifer('users'),
-			fieldOne = sql.Indentifer('username')
-			fieldTwo = sql.Indentifier('password')
+			table = sql.Identifer('users'),
+			fieldOne = sql.Identifer('username')
+			fieldTwo = sql.Identifier('password')
 		)
 		
 		cur.execute(query, (user['sub'], encrypted_pass.decode('utf-8')))
