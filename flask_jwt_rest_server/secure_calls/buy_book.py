@@ -11,7 +11,7 @@ def handle_request():
 	logger.debug("Buy Book Handle Request")
 	
 	cur = g.db.cursor()
-	user = g.jwt_data
+	user = g.jwt_data['sub']
 	
 	try:
 		# clean up query
