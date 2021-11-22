@@ -43,7 +43,7 @@ def handle_request():
 				table = sql.Identifier('users'),
 				key = sql.Identifier('username')
 			)
-
+			print("Updated last login for user '" + form["username"] + "'.")
 			cur.execute(query, (user['sub'],))
 			db.commit();
 
