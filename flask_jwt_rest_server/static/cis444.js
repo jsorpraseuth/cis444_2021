@@ -115,6 +115,6 @@ function buyBook(id) {
 		console.log("buy book"); 
 		console.log(data);
 		
-		alert(response.message);
+		alert(data.message);
 	});
 }
