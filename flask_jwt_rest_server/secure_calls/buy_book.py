@@ -12,8 +12,7 @@ def handle_request():
 	
 	cur = g.db.cursor()
 	
-	book = id
-	print("Id: " + id())
+	id(book)
 	print("Book: " + book)
 	
 	try:
