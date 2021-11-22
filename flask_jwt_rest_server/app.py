@@ -22,9 +22,9 @@ FlaskJSON(app)
 
 # g is flask for a global var storage 
 def init_new_env():
-    if 'db' not in g:
-        g.db = get_db()
-
+	if 'db' not in g:
+		g.db = get_db()
+		
 	if DEBUG == False:
 		if 'secrets' not in g:
 			g.secrets = get_secrets()
