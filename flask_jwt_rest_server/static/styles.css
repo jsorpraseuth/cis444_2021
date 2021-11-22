@@ -1,0 +1,145 @@
+body {
+	background: linear-gradient(-45deg, #120C6E, #5E72EB, #FF9190, #FDC094);
+	background-size: 800% 800%;
+	animation: gradient 15s ease infinite;
+	font-family: Roboto Light;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+#login {
+	background: white;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 200px;
+	position: relative;
+	z-index: 1;
+	background: #FFFFFF;
+	max-width: 360px;
+	padding: 45px;
+	text-align: center;
+	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+	border-radius: 10px;
+}
+
+#formHeader {
+	font-size: 18px;
+}
+
+.formLabel {
+	display: block;
+	float: left;
+	padding: 2px;
+}
+
+.formInput {
+	display: block;
+	width: 100%;
+	background: #f9f9f9;
+	border: 1;
+	margin: 0 0 15px;
+	padding: 4px;
+	border-radius: 5px;
+}
+
+#formSubmit {
+	padding: 10px 25px;
+	font-weight: bold;
+	background: #ddd; 
+	border: 0 none;
+	cursor: pointer;
+	border-radius: 5px; 
+}
+
+#logOut {
+	padding: 10px 15px;
+	font-weight: bold;
+	background: #ddd; 
+	border: 0 none;
+	cursor: pointer;
+	border-radius: 5px;
+	float: right;
+	position: absolute;
+	right: 0;
+	top: 0;
+	margin-right: 10px;
+	margin-top: 10px;
+}
+
+#store {
+	display: none;
+	background: white;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 200px;
+	font-family: Roboto;
+	position: relative;
+	z-index: 1;
+	background: #FFFFFF;
+	max-width: 720px;
+	padding: 45px;
+	text-align: center;
+	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+	border-radius: 10px;
+}
+
+table {
+	margin: auto auto;
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+thead {
+	background: #395870;
+	color: #fff;
+}
+tbody tr:nth-child(even) {
+	background: #f0f0f2;
+}
+th, td {
+	border-bottom: 1px solid #cecfd5;
+	padding: 10px 25px;
+}
+td {
+	border-bottom: 1px solid #cecfd5;
+	border-right: 1px solid #cecfd5;
+}
+td:first-child {
+	border-left: 1px solid #cecfd5;
+}
+td button {
+	border: 0;
+	cursor: pointer;
+	color: white;
+	background-color: #395870;
+	border-radius: 4px;
+	font-size: 14px;
+	font-weight: 500;
+	padding: 4px 8px;
+	min-height: 28px;
+}
+tfoot tr:last-child td {
+	border-bottom: 0;
+}
+.bookTitle {
+	color: #395870;
+	display: block;
+}
+
+#loginForm {
+	display: none;
+}
+
+a {
+	text-decoration: none;
+	color: blue;
+}
