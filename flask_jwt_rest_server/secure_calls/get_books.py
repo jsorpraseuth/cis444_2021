@@ -11,7 +11,7 @@ def handle_request():
 	logger.debug("Get Books Handle Request")
 	cur = g.db.cursor()	
 
-	query = sql.SQL("select * from {table} where not exists (select from {table2} where books.book_id = purchases.book_id and user_id = 1);").format(
+	query = sql.SQL("select * from {table} where not exists (select from {table2} where books.book_id = purchases.book_id and username = test);").format(
 		table = sql.Identifier('books'),
 		table2 = sql.Identifier('purchases')
 	)

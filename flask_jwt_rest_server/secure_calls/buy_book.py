@@ -17,7 +17,7 @@ def handle_request():
 		# clean up query
 		query = sql.SQL("insert into {table} ({fieldOne}, {fieldTwo}, {fieldThree}) values (%s, %s, current_timestamp);").format(
 			table = sql.Identifier('purchases'),
-			fieldOne = sql.Identifier('user_id'),
+			fieldOne = sql.Identifier('username'),
 			fieldTwo = sql.Identifier('book_id'),
 			fieldThree = sql.Identifier('purchased_on')
 		)
