@@ -11,8 +11,8 @@ def handle_request():
 	logger.debug("Buy Book Handle Request")
 	
 	cur = g.db.cursor()
-	book_id = request.form['book_id']
-	print(book_id)
+	book = request.form['book_id']
+	print(book)
 	
 	try:
 		# clean up query
