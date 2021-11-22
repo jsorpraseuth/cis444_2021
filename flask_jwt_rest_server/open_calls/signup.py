@@ -20,8 +20,8 @@ def handle_request():
 	
 	# clean query to desired format
 	query = sql.SQL("select {field} from {table} where {key} = %s;").format(
-		field = sql.Identifer('username'),
-		table = sql.Identifer('users'),
+		field = sql.Identifier('username'),
+		table = sql.Identifier('users'),
 		key = sql.Identifer('username'))
 	)
 		
@@ -36,7 +36,7 @@ def handle_request():
 		# clean insert
 		query = sql.SQL("insert into {table} ({fieldOne}, {fieldTwo}) values (%s, %s);").format(
 			table = sql.Identifer('users'),
-			fieldOne = sql.Identifer('username')
+			fieldOne = sql.Identifier('username')
 			fieldTwo = sql.Identifier('password')
 		)
 		
