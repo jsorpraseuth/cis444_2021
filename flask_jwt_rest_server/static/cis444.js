@@ -43,6 +43,10 @@ function logout() {
 function verify() {
 	$.post("/open_api/login", {"username" : $('#username').val(), "password" : $('#password').val()},
 		function(data, textStatus) {
+			if(data.authenticated == false) {
+				alert(response.message);
+				return false;
+			}
 			//this gets called when browser receives response from server
 			console.log(data.token);
 			// store jwt

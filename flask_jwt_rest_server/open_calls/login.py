@@ -48,7 +48,7 @@ def handle_request():
 			db.commit();
 
 			# user login authenticated, create token for user
-			return json_response(token = create_token(user) , authenticated = True)
+			return json_response(token = create_token(user), authenticated = True)
 		else:
 			print("Incorrect password.")
 			return json_response(message = "Incorrect password.", status = 404, authenticated = False)
