@@ -61,7 +61,7 @@ function verify() {
 			console.log("error");
 			console.log(response);
 			// alert user of error
-			alert(response.data.message);
+			alert(response.message);
 		});
 
 	return false;
