@@ -11,7 +11,6 @@ def handle_request():
 	logger.debug("Buy Book Handle Request")
 	
 	cur = g.db.cursor()
-	user = g.jwt_data['sub']
 	
 	try:
 		# clean up query
@@ -22,7 +21,7 @@ def handle_request():
 			fieldThree = sql.Identifier('purchased_on')
 		)
 		
-		cur.execute(query, user, book_id)
+		cur.execute(query, (g.jwt_data['sub'], book_id))
 		db.commit();
 		print("Purchased saved into database.")
 		
