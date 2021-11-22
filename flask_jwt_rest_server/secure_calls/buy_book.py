@@ -12,7 +12,7 @@ def handle_request():
 	bookid = request.args.get('book_id')
 	print("Book ID is: " + bookid)
 	
-	if book >= 0:
+	try:
 		# clean up query
 		query = sql.SQL("insert into {table} ({fieldOne}, {fieldTwo}, {fieldThree}) values (%s, %s, current_timestamp);").format(
 			table = sql.Identifier('purchases'),
@@ -26,7 +26,6 @@ def handle_request():
 		db.commit()
 		
 		print("Purchased saved into database.")
-		
 		return json_response(message = "Book purchased successfully.", token = create_token(g.jwt_data))
-	else:
+	except:
 		return json_response(message = "Error while writing to database.", token = create_token(g.jwt_data), status = 500)

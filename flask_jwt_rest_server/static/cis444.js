@@ -116,5 +116,8 @@ function buyBook(book_id) {
 		console.log(data);
 		
 		alert(data.message);
+	},
+		function(err) { 
+			console.log(err) 
 	});
 }
