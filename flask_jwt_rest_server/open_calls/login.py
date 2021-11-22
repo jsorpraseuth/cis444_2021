@@ -29,7 +29,7 @@ def handle_request():
 	row = cur.fetchone()
 	if not row:
 		print("Username '" + form["username"] + "' is invalid.")
-		return json_response(data = {"message" : "Username '" + form["username"] + "' does not exist."}, status = 404, authenticated = False)
+		return json_response("message" : "Username '" + form["username"] + "' does not exist.", status = 404, authenticated = False)
 	# username exists, check password
 	else:
 		cur.execute(query, (user['sub'],))
@@ -48,8 +48,8 @@ def handle_request():
 			db.commit();
 
 			# user login authenticated, create token for user
-			return json_response( token = create_token(user) , authenticated = True)
+			return json_response(token = create_token(user) , authenticated = True)
 		else:
 			print("Incorrect password.")
-			return json_response(data = {"message" : "Incorrect password."}, status = 404, authenticated = False)
+			return json_response("message" : "Incorrect password.", status = 404, authenticated = False)
 			
