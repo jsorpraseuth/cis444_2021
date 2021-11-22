@@ -98,7 +98,7 @@ function get_books() {
 		// <button id="book_id" onclick="buyBook(this.id);">Buy</button>
 			pulledBooks = document.getElementById("books");
 			pulledBooks.insertAdjacentHTML('beforeend', '<tr><td><button id="' + 
-			data.books[i][0] + '" onclick="buyBook(this.id);">Buy</button></td>'
+			data.books[i][0] + '" name="book_id" value="this.id" onclick="buyBook(this.id);">Buy</button></td>'
 			+ '<td><strong class="bookTitle">' + data.books[i][1] 
 			+ '</strong> by ' + data.books[i][2] + '</td>'
 			+ '<td>' + data.books[i][3] + '</td>'
@@ -111,7 +111,7 @@ function get_books() {
 }
 
 function buyBook(book_id) {
-	secure_get_with_token("/secure_api/buy_book", {"book_id" : book_id.toString()} , function(data) {
+	secure_get_with_token("/secure_api/buy_book", {"book_id" : $('book_id').val()} , function(data) {
 		console.log("buy book"); 
 		console.log(data);
 		
