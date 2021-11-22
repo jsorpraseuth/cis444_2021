@@ -111,12 +111,11 @@ function get_books() {
 }
 
 function buyBook(id) {
+	console.log("Book is: " + id);
 	book_id = id;
 	
 	secure_get_with_token("/secure_api/buy_book", {"id" : book_id} , function(data) {
 		console.log("buy book"); 
-		console.log("book id 1: " + id);
-		console.log("book id 2: " + book_id);
 		console.log(data);
 		
 		alert(data.message);
