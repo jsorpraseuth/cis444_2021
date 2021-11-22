@@ -43,16 +43,15 @@ function logout() {
 }
 
 function verify() {
-	var text = document.getElementById("formHeader").innerHTML.toLowerCase();
-	var action = (text == "log in") ? "login" : "signup";
+//	var text = document.getElementById("formHeader").innerHTML.toLowerCase();
+//	var action = (text == "log in") ? "login" : "signup";
 	
-	if (action == "login") {
 		$.post("/open_api/login", {"username" : $('#username').val(), "password" : $('#password').val()},
 			function(data, textStatus) {
-				// store jwt
-				jwt = data.token
 				//this gets called when browser receives response from server
 				console.log(data.token);
+				// store jwt
+				jwt = data.token
 				//make secure call with the jwt
 				loadBooks();
 			}, "json").fail(function(response) {
@@ -60,22 +59,19 @@ function verify() {
 				console.log("error");
 				console.log(response);
 			});
-	}
-	else if (action == "signup") {
-		$.post("/open_api/signup", {"username" : $('#username').val(), "password" : $('#password').val()},
-			function(data, textStatus) {
-				// store jwt
-				jwt = data.token
-				//this gets called when browser receives response from server
-				console.log(data.token);
-				//make secure call with the jwt
-				loadBooks();
-			}, "json").fail(function(response) {
-				//this gets called if the server throws an error
-				console.log("error");
-				console.log(response);
-			});
-	}
+//		$.post("/open_api/signup", {"username" : $('#username').val(), "password" : $('#password').val()},
+//			function(data, textStatus) {
+//				// store jwt
+//				jwt = data.token
+//				//this gets called when browser receives response from server
+//				console.log(data.token);
+//				//make secure call with the jwt
+//				loadBooks();
+//			}, "json").fail(function(response) {
+//				//this gets called if the server throws an error
+//				console.log("error");
+//				console.log(response);
+//			});
 
 	return false;
 }
