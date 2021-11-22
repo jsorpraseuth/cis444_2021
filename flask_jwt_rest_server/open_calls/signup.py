@@ -47,8 +47,8 @@ def handle_request():
 		db.commit()
 		
 		print('User "' + form['username'] + '" created successfully.')
-		return json_response(data = {message = "User account created successfully."}, token = create_token(user), authenticated = True)
+		return json_response(message = "User account created successfully.", token = create_token(user), authenticated = True)
 	else:
 		print('Error: "' + form['username'] + '" already in use.')
-		return json_response(data = {message = "Username is already in use."}, status = 404, authenticated = False)
+		return json_response(message = "Username is already in use.", status = 404, authenticated = False)
 
