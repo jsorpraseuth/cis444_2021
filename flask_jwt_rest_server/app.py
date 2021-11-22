@@ -16,7 +16,6 @@ ERROR_MSG = "Ooops.. Didn't work!"
 
 # Create our app
 app = Flask(__name__)
-app.secret_key = "This is BAD.. But a lot easier to explain in 40 min"
 # add in flask json
 FlaskJSON(app)
 
