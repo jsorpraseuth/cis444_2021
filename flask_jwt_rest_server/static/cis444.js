@@ -33,7 +33,6 @@ function logout() {
 	pulledBooks.innerHTML = "";
 	
 	// delete session token
-	fetch("/logout");
 	jwt = null;
 	
 	// hide store show login page
