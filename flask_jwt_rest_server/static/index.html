@@ -11,71 +11,6 @@
 
 		<script>
 
-			var pulledBooks;
-
-			function logout() {
-				// empty books table
-				pulledBooks.innerHTML = "";
-				
-				// delete session token
-				fetch("/logout");
-				jwt = undefined;
-				
-				// hide store show login page
-				$("#login").show();
-				$("#store").hide();
-			}
-
-			function verify() {
-				$.post("/open_api/login", {"username" : $('#username').val(), "password" : $('#password').val()},
-					function(data, textStatus) {
-						if(data.authenticated == false) {
-							alert(data.message);
-							return false;
-						}
-						//this gets called when browser receives response from server
-						console.log("Token: " + data.token);
-						// store jwt
-						jwt = data.token
-						//make secure call with the jwt
-						loadBooks();
-					}, "json").fail(function(response) {
-						//this gets called if the server throws an error
-						console.log("error");
-						console.log(response);
-					});
-
-				return true;
-			}
-
-			function loadBooks() {	
-				secure_get_with_token("/secure_api/get_books", {} , function(data) {
-					console.log("got books"); 
-					console.log(data);
-					
-					$("#login").hide();
-					$('#store').show();
-					
-					// display books
-					for(i = 0; i < data.books.length; i++) {
-					// <button id="book_id" onclick="buyBook(this.id);">Buy</button>
-						pulledBooks = document.getElementById("books");
-						pulledBooks.insertAdjacentHTML('beforeend', '<tr><td><button id="' + 
-						response.data.books[i].book_id + '" onclick="buyBook(this.id);">Buy</button></td>'
-						+ '<td><strong class="bookTitle">' + response.data.books[i].book_name 
-						+ '</strong> by ' + response.data.books[i].book_author + '</td>'
-						+ '<td>' + response.data.books[i].book_genre + '</td>'
-						+ '<td>$ ' + response.data.books[i].book_price + '</td></tr>');
-					}
-				},
-					function(err){ console.log(err) });
-			}
-
-			async function buyBook(id) {
-				const response = await $.post("/buyBook", { "jwt": token.jwt, "book_id": id }, "json");
-				alert(response.message);
-			}
-
 			function buy_book(book_id){
 				//make secure call with the jwt
 				secure_get_with_token("/secure_api/get_books", {"book_id" : book_id} , function(data) {
@@ -114,7 +49,7 @@
 			<p id="registerForm">Don't have an account? <a href="#" onclick="registerForm()">Click here to sign up.</a></p>
 			<p id="loginForm">Already have an account? <a href="#" onclick="loginForm()">Click here to log in.</a></p>
 			
-			<input id="formSubmit" type="submit" value="Log In" onclick="return verify();">
+			<input id="formSubmit" type="submit" value="Log In" onclick="return v();">
 			
 		</div>
 		
