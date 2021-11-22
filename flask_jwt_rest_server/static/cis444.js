@@ -85,7 +85,6 @@ function loadBooks() {
 		}
 	},
 		function(err){ console.log(err) });
-	}
 }
 
 async function buyBook(id) {
