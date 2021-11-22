@@ -34,10 +34,11 @@ def handle_request():
 		# encrypt the password
 		encrypted_pass = bcrypt.hashpw(bytes(password_from_user_form, 'utf-8'), bcrypt.gensalt(11))
 		# clean insert
-		query = sql.SQL("insert into {table} ({fieldOne}, {fieldTwo}) values (%s, %s);").format(
+		query = sql.SQL("insert into {table} ({fieldOne}, {fieldTwo}, {fieldTree}) values (%s, %s, current_timestamp);").format(
 			table = sql.Identifier('users'),
 			fieldOne = sql.Identifier('username'),
-			fieldTwo = sql.Identifier('password')
+			fieldTwo = sql.Identifier('password'),
+			fieldThree = sql.Identifier('created_on')
 		)
 		
 		cur.execute(query, (user['sub'], encrypted_pass))
