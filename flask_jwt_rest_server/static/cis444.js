@@ -1,6 +1,6 @@
 var jwt = null
 
-function secure_get_with_token(endpoint, method, data_to_send, on_success_callback, on_fail_callback) {
+function secure_get_with_token(endpoint, data_to_send, on_success_callback, on_fail_callback) {
 	
 	xhr = new XMLHttpRequest();
 	
@@ -59,13 +59,11 @@ function verify() {
 			console.log(response);
 		});
 
-	return false;
+	return true;
 }
 
-function loadBooks() {
-	//const response = await $.post("/loadBooks", { "jwt": token.jwt }, "json");
-	
-	secure_get_with_token("/secure_api/get_books", 'GET', {} , function(data) {
+function loadBooks() {	
+	secure_get_with_token("/secure_api/get_books", {} , function(data) {
 		console.log("got books"); 
 		console.log(data);
 		
