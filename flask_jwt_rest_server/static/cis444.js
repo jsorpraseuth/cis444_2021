@@ -119,6 +119,9 @@ function buyBook(book_id) {
 		console.log("buy book"); 
 		console.log(data);
 		
+		# refresh the book listing
+		get_books();
+		
 		alert(data.message);
 	},
 		function(err) { 
