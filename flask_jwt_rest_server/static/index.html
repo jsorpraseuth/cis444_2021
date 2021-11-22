@@ -7,18 +7,6 @@
     </head>
 	
     <body>
-
-		<script>
-
-			function buy_book(book_id){
-				//make secure call with the jwt
-				secure_get_with_token("/secure_api/get_books", {"book_id" : book_id} , function(data) {
-					console.log("bought book"); console.log(data)
-				},
-				function(err){ console.log(err) });
-			}
-
-		</script>
 		
 		<div id="store">
 			<input id="logOut" type="submit" value="Log Out" onclick="logout()">

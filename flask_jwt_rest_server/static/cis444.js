@@ -40,6 +40,9 @@ function logout() {
 	$("#login").show();
 	$("#store").hide();
 	
+	// run login form to ensure goes back to login page
+	loginForm();
+	
 	alert("Log Out successful.");
 
 }
