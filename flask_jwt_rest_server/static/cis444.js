@@ -112,7 +112,7 @@ function get_books() {
 
 function buyBook(id) {
 	secure_get_with_token("/secure_api/buy_book", {"id" : $('id').val()} , function(data) {
-		console.log($('id').val());
+		console.log(id.val());
 		console.log("buy book"); 
 		console.log(data);
 		
