@@ -59,7 +59,7 @@ function verify() {
 			console.log(response);
 		});
 
-	return true;
+	return false;
 }
 
 function get_books() {	
