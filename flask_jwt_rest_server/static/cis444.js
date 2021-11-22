@@ -42,7 +42,7 @@ function logout() {
 	$("#store").hide();
 }
 
-async function verify() {
+function verify() {
 	var text = document.getElementById("formHeader").innerHTML.toLowerCase();
 	var action = (text == "log in") ? "login" : "signup";
 	
@@ -59,8 +59,6 @@ async function verify() {
 				//this gets called if the server throws an error
 				console.log("error");
 				console.log(response);
-				// alert user of error
-				alert(response);
 			});
 	}
 	else if (action == "signup") {
@@ -76,8 +74,6 @@ async function verify() {
 				//this gets called if the server throws an error
 				console.log("error");
 				console.log(response);
-				// alert user of error
-				alert(response);
 			});
 	}
 
