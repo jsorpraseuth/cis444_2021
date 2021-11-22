@@ -15,5 +15,5 @@ def handle_request():
 	
 	cur.execute()
 	db_books = cur.fetchall()
-
-    return json_response(token = create_token(g.jwt_data), books = db_books)
+	
+	return json_response(token = create_token(g.jwt_data), books = db_books)
