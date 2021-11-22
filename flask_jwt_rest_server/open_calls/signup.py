@@ -22,7 +22,7 @@ def handle_request():
 	query = sql.SQL("select {field} from {table} where {key} = %s;").format(
 		field = sql.Identifier('username'),
 		table = sql.Identifier('users'),
-		key = sql.Identifer('username')
+		key = sql.Identifier('username')
 	)
 		
 	# check if user exists
