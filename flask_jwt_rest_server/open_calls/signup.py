@@ -32,7 +32,7 @@ def handle_request():
 	# if username is available, create credentials
 	if row is None:
 		# encrypt the password
-		encrypted_pass = bcrypt.hashpw(bytes(password_from_user_form), 'utf-8'), bcrypt.gensalt(11))
+		encrypted_pass = bcrypt.hashpw(bytes(password_from_user_form, 'utf-8'), bcrypt.gensalt(11))
 		# clean insert
 		query = sql.SQL("insert into {table} ({fieldOne}, {fieldTwo}) values (%s, %s);").format(
 			table = sql.Identifer('users'),
