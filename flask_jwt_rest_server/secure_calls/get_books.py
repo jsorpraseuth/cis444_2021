@@ -16,7 +16,7 @@ def handle_request():
 		table2 = sql.Identifier('purchases'),
 	)
 	
-	cur.execute(query. (g.jwt_data['sub']))
+	cur.execute(query, (g.jwt_data['sub'],))
 	print("Grabbed books from database that were not purchased by user.")
 	db_books = cur.fetchall()
 	
