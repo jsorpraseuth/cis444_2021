@@ -48,7 +48,7 @@ function verify() {
 				return false;
 			}
 			//this gets called when browser receives response from server
-			console.log("Token: $(data.token)");
+			console.log("Token: " + data.token);
 			// store jwt
 			jwt = data.token
 			//make secure call with the jwt
