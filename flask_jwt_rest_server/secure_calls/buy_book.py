@@ -13,9 +13,9 @@ def handle_request():
 	cur = g.db.cursor()
 	
 	book = 0
-	print("Book: " + book)
+	print(book)
 	book_id(book)
-	print("Book: " + book)
+	print(book)
 	
 	try:
 		# clean up query
