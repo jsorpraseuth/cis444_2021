@@ -26,7 +26,7 @@ def token_required(f):
 		if len(auth_headers) != 2:
 			return json_response(status_ = 401, message = invalid_msg)
 
-        try:
+		try:
 			token = auth_headers[1]
 			logger.debug("Got token")
 			logger.debug(token)
