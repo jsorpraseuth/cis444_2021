@@ -27,7 +27,7 @@ def handle_request():
 	row = cur.fetchone()
 	
 	# if username is available, create credentials
-	if cur.fetchone() is None:
+	if row is None:
 		# encrypt the password
 		encrypted_pass = bcrypt.hashpw(bytes(password_from_user_form), 'utf-8'), bcrypt.gensalt(11))
 		# clean insert
