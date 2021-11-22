@@ -2,12 +2,10 @@ var jwt = null
 
 function secure_get_with_token(endpoint, data_to_send, on_success_callback, on_fail_callback) {
 	
-	console.log("Secure Call: " + method);
-	
 	xhr = new XMLHttpRequest();
 	
 	function setHeader(xhr) {
-		xhr.setRequestHeader('Authorization', 'Bearer:'+jwt);
+		xhr.setRequestHeader('Authorization', 'Bearer: ' + jwt);
 	}
 	
 	function get_and_set_new_jwt(data){
@@ -43,35 +41,19 @@ function logout() {
 }
 
 function verify() {
-//	var text = document.getElementById("formHeader").innerHTML.toLowerCase();
-//	var action = (text == "log in") ? "login" : "signup";
-	
-		$.post("/open_api/login", {"username" : $('#username').val(), "password" : $('#password').val()},
-			function(data, textStatus) {
-				//this gets called when browser receives response from server
-				console.log(data.token);
-				// store jwt
-				jwt = data.token
-				//make secure call with the jwt
-				loadBooks();
-			}, "json").fail(function(response) {
-				//this gets called if the server throws an error
-				console.log("error");
-				console.log(response);
-			});
-//		$.post("/open_api/signup", {"username" : $('#username').val(), "password" : $('#password').val()},
-//			function(data, textStatus) {
-//				// store jwt
-//				jwt = data.token
-//				//this gets called when browser receives response from server
-//				console.log(data.token);
-//				//make secure call with the jwt
-//				loadBooks();
-//			}, "json").fail(function(response) {
-//				//this gets called if the server throws an error
-//				console.log("error");
-//				console.log(response);
-//			});
+	$.post("/open_api/login", {"username" : $('#username').val(), "password" : $('#password').val()},
+		function(data, textStatus) {
+			//this gets called when browser receives response from server
+			console.log(data.token);
+			// store jwt
+			jwt = data.token
+			//make secure call with the jwt
+			loadBooks();
+		}, "json").fail(function(response) {
+			//this gets called if the server throws an error
+			console.log("error");
+			console.log(response);
+		});
 
 	return false;
 }
