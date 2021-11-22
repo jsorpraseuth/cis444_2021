@@ -12,7 +12,7 @@ def handle_request():
 	cur = g.db.cursor()	
 	user = g.jwt_data
 
-	query = sql.SQL("select * from {table} where not exists (select from {table2} where books.book_id = purchases.book_id and username = " + user + ");").format(
+	query = sql.SQL("select * from {table} where not exists (select from {table2} where books.book_id = purchases.book_id and username = ", user, ");").format(
 		table = sql.Identifier('books'),
 		table2 = sql.Identifier('purchases')
 	)
