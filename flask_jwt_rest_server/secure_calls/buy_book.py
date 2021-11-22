@@ -7,12 +7,12 @@ from tools.logging import logger
 
 def handle_request():
 	logger.debug("Buy Book Handle Request")
-	
+	db = g.db
 	cur = g.db.cursor()
-	book = request.args.get('book_id')
-	print(book)
+	bookid = request.args.get('book_id')
+	print("Book ID is: " + bookid)
 	
-	try:
+	if book >= 0:
 		# clean up query
 		query = sql.SQL("insert into {table} ({fieldOne}, {fieldTwo}, {fieldThree}) values (%s, %s, current_timestamp);").format(
 			table = sql.Identifier('purchases'),
@@ -21,10 +21,12 @@ def handle_request():
 			fieldThree = sql.Identifier('purchased_on')
 		)
 		
-		cur.execute(query, (g.jwt_data['sub'], book))
+		# execute the query then commit to db
+		cur.execute(query, (g.jwt_data['sub'], bookid))
 		db.commit()
+		
 		print("Purchased saved into database.")
 		
 		return json_response(message = "Book purchased successfully.", token = create_token(g.jwt_data))
-	except:
+	else:
 		return json_response(message = "Error while writing to database.", token = create_token(g.jwt_data), status = 500)
