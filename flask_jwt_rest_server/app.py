@@ -13,7 +13,6 @@ import traceback
 
 ERROR_MSG = "Ooops.. Didn't work!"
 
-
 # Create our app
 app = Flask(__name__)
 # add in flask json

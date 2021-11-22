@@ -51,6 +51,7 @@ function verify() {
 			console.log(data.token);
 			// store jwt
 			jwt = data.token
+			$("#login").hide();
 			//make secure call with the jwt
 			get_books();
 		}, "json").fail(function(response) {
@@ -67,7 +68,6 @@ function get_books() {
 		console.log("got books"); 
 		console.log(data);
 		
-		$("#login").hide();
 		$('#store').show();
 		
 		// display books
