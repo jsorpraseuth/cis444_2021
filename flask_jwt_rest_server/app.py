@@ -72,9 +72,9 @@ def exec_proc(proc_name):
         ex_data = ex_data + str(err) + '\n'
         ex_data = ex_data + traceback.format_exc()
         logger.error(ex_data)
-        return json_response(status_=500 ,data=ERROR_MSG)
+        return json_response(status_ = 500, data = ERROR_MSG)
 
     return resp
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=80)
+    app.run(host = '0.0.0.0', port = 80)

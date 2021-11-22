@@ -60,7 +60,7 @@ function verify() {
 				console.log("error");
 				console.log(response);
 				// alert user of error
-				alert(response.message);
+				alert(response);
 			});
 	}
 	else if (action == "signup") {
@@ -77,7 +77,7 @@ function verify() {
 				console.log("error");
 				console.log(response);
 				// alert user of error
-				alert(response.message);
+				alert(response);
 			});
 	}
 
