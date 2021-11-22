@@ -16,7 +16,7 @@ SECRET_CACHE = {}
 def get_secrets():
     global SECRET_CACHE
     if NO_AWS:
-        return {"JWT": "KxQ(S#@>\"5=m$#58SgzD,+H+a73*pzKH,g5_"}
+        return {"JWT": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqYW1lcyIsImV4cCI6MTYzNzU1ODY5OCwiaWF0IjoxNjM3NTU2ODk4fQ.HXWjVzgvKAfljSOP4pdCR4TxRWHGcyeFCnfPnTXR3MM"}
 
     if len(SECRET_CACHE) !=0:
         return SECRET_CACHE

@@ -13,8 +13,6 @@ import traceback
 
 ERROR_MSG = "Ooops.. Didn't work!"
 
-DEBUG = True
-
 # Create our app
 app = Flask(__name__)
 # add in flask json
@@ -25,11 +23,7 @@ def init_new_env():
 	if 'db' not in g:
 		g.db = get_db()
 		
-	if DEBUG == False:
-		if 'secrets' not in g:
-			g.secrets = get_secrets()
-	else:
-		g.secrets = {"JWT": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqYW1lcyIsImV4cCI6MTYzNzU1ODY5OCwiaWF0IjoxNjM3NTU2ODk4fQ.HXWjVzgvKAfljSOP4pdCR4TxRWHGcyeFCnfPnTXR3MM"}
+	g.secrets = get_secrets()
 
 # This gets executed by default by the browser if no page is specified
 # So.. we redirect to the endpoint we want to load the base page
