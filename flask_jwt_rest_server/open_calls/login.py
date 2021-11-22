@@ -1,8 +1,11 @@
 from flask import request, g
 from flask_json import FlaskJSON, JsonError, json_response, as_json
+from psycopg2 import sql
 from tools.token_tools import create_token
 
 from tools.logging import logger
+
+import bcrypt
 
 def handle_request():
 	logger.debug("Login Handle Request")
