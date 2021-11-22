@@ -52,7 +52,16 @@ body {
 	border-radius: 5px;
 }
 
-#formSubmit {
+#loginSubmit {
+	padding: 10px 25px;
+	font-weight: bold;
+	background: #ddd; 
+	border: 0 none;
+	cursor: pointer;
+	border-radius: 5px; 
+}
+
+#signupSubmit {
 	padding: 10px 25px;
 	font-weight: bold;
 	background: #ddd; 

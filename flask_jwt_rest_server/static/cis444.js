@@ -40,8 +40,31 @@ function logout() {
 	$("#store").hide();
 }
 
-function verify() {
+function login() {
 	$.post("/open_api/login", {"username" : $('#username').val(), "password" : $('#password').val()},
+		function(data, textStatus) {
+			if(data.authenticated == false) {
+				alert(data.message);
+				return false;
+			}
+			//this gets called when browser receives response from server
+			console.log(data.token);
+			// store jwt
+			jwt = data.token
+			$("#login").hide();
+			//make secure call with the jwt
+			get_books();
+		}, "json").fail(function(response) {
+			//this gets called if the server throws an error
+			console.log("error");
+			console.log(response);
+		});
+
+	return false;
+}
+
+function signup() {
+	$.post("/open_api/signup", {"username" : $('#username').val(), "password" : $('#password').val()},
 		function(data, textStatus) {
 			if(data.authenticated == false) {
 				alert(data.message);
