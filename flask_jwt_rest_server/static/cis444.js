@@ -111,8 +111,7 @@ function get_books() {
 }
 
 function buyBook(id) {
-	secure_get_with_token("/secure_api/buy_book", {"id" : id.valueOf()} , function(data) {
-		console.log(id.valueOf());
+	secure_get_with_token("/secure_api/buy_book", {"id" : id.toString()} , function(data) {
 		console.log("buy book"); 
 		console.log(data);
 		
