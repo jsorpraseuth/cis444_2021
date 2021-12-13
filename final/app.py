@@ -1,5 +1,7 @@
 from flask import Flask, request
 
+import requests
+
 app = Flask(__name__)
 
 API_KEY = 'deeb10dd2998cb3ea5ddf7240b75c918'
@@ -15,7 +17,7 @@ def search_by_city():
 
     # call API
     url = f'http://api.openweathermap.org/data/2.5/weather?q={city}&APPID={API_KEY}'
-    response = request.get(url).json()
+    response = requests.get(url).json()
 
     # exception handling
     if response.get('cod') != 200:
