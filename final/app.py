@@ -29,7 +29,7 @@ def search_by_city():
     if current_temperature:
         current_temperature_fahrenheit = round(current_temperature - 273.15 * 9/5 + 32, 2)
         current_temperature_celsius = round(current_temperature - 273.15, 2)
-        return f'Current temperature of {city.title()} is {current_temperature} &#8457;, {current_temperature_celsius} &#8451;'
+        return f'Current temperature of {city.title()} is {current_temperature_fahrenheit} &#8457;, {current_temperature_celsius} &#8451;'
     else:
         return f'Error getting temperature for {city.title()}'
 
