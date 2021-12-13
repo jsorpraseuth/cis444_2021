@@ -1,5 +1,5 @@
-from flask_socketio import SocketIO
 from flask import Flask, render_template, request, redirect, url_for
+from flask_socketio import SocketIO
 from db import get_db_instance, get_db
 
 app = Flask(__name__)
@@ -38,4 +38,4 @@ def handle_join_room_event(data):
 	socketio.emit('join_notification', data['username'])
 	
 if __name__ == '__main__':
-	socketio.run(app, host = '0.0.0.0', port = 80)
+	socketio.run(app)
