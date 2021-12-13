@@ -3,7 +3,7 @@ from flask_socketio import SocketIO, join_room
 from db import get_db_instance, get_db
 
 app = Flask(__name__)
-socketio = SocketIO(app, cors_allowed_origins="*")
+socketio = SocketIO(app)
 
 # g is flask for a global var storage 
 def init_new_env():
