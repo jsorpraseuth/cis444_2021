@@ -38,4 +38,4 @@ def handle_join_room_event(data):
 	socketio.emit('join_notification', data['username'])
 	
 if __name__ == '__main__':
-	socketio.run(app)
+	socketio.run(app, port = 80)
