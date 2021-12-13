@@ -15,7 +15,7 @@ def search_by_city():
 
     # call API
     url = f'http://api.openweathermap.org/data/2.5/weather?q={city}&APPID={API_KEY}'
-    response = requests.get(url).json()
+    response = request.get(url).json()
 
     # exception handling
     if response.get('cod') != 200:
