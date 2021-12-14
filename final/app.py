@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, render_template
 
 import requests
 
@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return '<h1>Welcome to weather app</h1>'
+    return render_template("index.html")
 
 @app.route('/city')
 def search_by_city():
