@@ -16,11 +16,10 @@ def index():
 
 @app.route('/city')
 def search_by_city():
-    key = get_api_key()
     city = request.args.get('q')
 
     # call API
-    url = f'http://api.openweathermap.org/data/2.5/weather?q={city}&APPID={key}'
+    url = f'http://api.openweathermap.org/data/2.5/weather?q={city}&APPID={get_api_key()}'
     response = requests.get(url).json()
 
     # exception handling
