@@ -3,11 +3,62 @@
     <head>
         <meta charset="UTF-8">
         <title>Chat Application</title>
-        <link href="../static/css/style.css" rel="stylesheet">
+
+        <style>
+            body {
+                background: #53806d;
+                font-family: Roboto Light;
+            }
+
+            textarea {
+                outline: none;
+                overflow: auto;
+                padding: 10px;
+                border-radius: 5px;
+            }
+
+            .text-center {
+                border-radius: 5px;
+                padding: 1px;
+                position: absolute;
+                top: 20%;
+                left: 50%;
+                margin-right: -50%;
+                transform: translate(-50%, -50%)
+            }
+
+            input[type=text] {
+                width: 100%;
+                padding: 6px;
+                margin: 8px 0;
+                outline: none;
+            }
+
+            button {
+                font-family: Roboto Light;
+                position: absolute;
+                outline: none;
+                color: #000000;
+                text-decoration: none;
+                box-sizing: border-box;
+                border: 1px solid #2f2f2f;
+                background-color: #fff;
+                padding: 4px;
+            }
+
+            h2 {
+                text-align: center;
+            }
+
+            p {
+                text-align: center;
+            }
+        </style>
     </head>
     <body>
-        <form action="{{url_for('chat')}}" method="post">
-            <h1>Chat</h1>
+        <form class="text-center" action="{{url_for('chat')}}" method="post">
+            <h2>Start Chatting!</h2>
+            <p>Insert a username and a room.</p>
             <input type="text" id="username" name="username" placeholder="Username" required autofocus><br>
             <input type="text" id="room" name="room" placeholder="Room" required><br>
             <button value="submit">Start Chat</button>
