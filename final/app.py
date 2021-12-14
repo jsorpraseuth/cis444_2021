@@ -13,8 +13,8 @@ def search_by_city():
     key = 'deeb10dd2998cb3ea5ddf7240b75c918'
     city = request.args.get('city')
     data = get_results(city, key)
-    temp = "{0:.2f}".format(data["main"]["temp"])
-    feels_like = "{0:.2f}".format(data["main"]["feels_like"])
+    temp = data["main"]["temp"]
+    feels_like = data["main"]["feels_like"]
     weather = data["weather"][0]["main"]
     location = data["name"]
 
