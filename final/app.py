@@ -11,7 +11,7 @@ def index():
 @app.route('/city')
 def search_by_city():
     key = 'deeb10dd2998cb3ea5ddf7240b75c918'
-    city = request.args.get('q')
+    city = request.args.get('city')
 
     # call API
     url = f'http://api.openweathermap.org/data/2.5/weather?q={city}&APPID={key}'
