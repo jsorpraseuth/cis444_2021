@@ -2,13 +2,15 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Weather App</title>
+        <title>Chat Application</title>
+        <link href="../static/css/style.css" rel="stylesheet">
     </head>
     <body>
-        <h2>Check the weather by entering your city below.</h2>
-        <form action="/city">
-            City: <input type="text" name="city">
-            <input type="submit" valuue="Submit">
+        <form action="{{url_for('chat')}}" method="post">
+            <h1>Chat</h1>
+            <input type="text" id="username" name="username" placeholder="Username" required autofocus><br>
+            <input type="text" id="room" name="room" placeholder="Room" required><br>
+            <button value="submit">Start Chat</button>
         </form>
     </body>
 </html>
