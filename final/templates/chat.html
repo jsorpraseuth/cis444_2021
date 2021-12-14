@@ -14,7 +14,10 @@
                 socket = io.connect('http://' + document.domain + ':' + location.port + '/chat');
 
                 socket.on('connect', function() {
-                    socket.emit('join', {});
+                    socket.emit('join', {
+                        username: "{{ username }}",
+                        room: "{{ room }}"
+                    });
                 });
 
                 socket.on('status', function(data) {
@@ -27,11 +30,17 @@
                     $('#chat').scrollTop($('#chat')[0].scrollHeight);
                 });
 
-                $('#send').click(function(e) {
-                        text = $('#text').val();
-                        $('#text').val('');
-                        socket.emit('text', {msg: text});
-                });
+                let message_input = document.getElementById('message_input');
+
+                document.getElementById('message_input_form').onsubmit = function (e) {
+                    e.preventDefault();
+                    let message = message_input.value.trim();
+                    if (message.length) {
+                        socket.emit('text', {msg: message});
+                    }
+                    message_input.value = '';
+                    message_input.focus();
+                }
             });
 
             window.onbeforeunload = function () {
@@ -55,9 +64,11 @@
     
         <div class="chatwindow">
             <h2>Room : {{session['room']}}</h2>
-            <textarea id="chat" cols="70" rows="10" placeholder="There are no messages."></textarea>
-            <input type="text" id="text" size="60" placeholder="Enter your message here"/>
-            <input type="submit"/>
+            <form id="message_input_form">
+                <textarea id="chat" cols="70" rows="10" placeholder="There are no messages."></textarea>
+                <input type="text" id="message_input" size="60" placeholder="Enter your message here"/>
+                <input type="submit" style="display:none"/>
+            </form>
             <button type="button" onclick=leave_room()>Leave this Chat</button>
         </div>
     </body>
