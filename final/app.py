@@ -1,10 +1,14 @@
 from flask import Flask, request
 
 import requests
+import configparser
 
 app = Flask(__name__)
 
-API_KEY = 'deeb10dd2998cb3ea5ddf7240b75c918'
+def get_api_key():
+    config = configparser.ConfigParser()
+    config.read('config.ini')
+    return config['weatherapi']['API_KEY']
 
 @app.route('/')
 def index():
@@ -12,7 +16,7 @@ def index():
 
 @app.route('/city')
 def search_by_city():
-    key = API_KEY
+    key = get_api_key()
     city = request.args.get('q')
 
     # call API
