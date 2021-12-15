@@ -17,8 +17,7 @@
                 border-radius: 5px;
             }
 
-            .joinchat {
-                display: none;
+            #joinchat {
                 border-radius: 5px;
                 padding: 1px;
                 position: absolute;
@@ -57,13 +56,14 @@
         </style>
     </head>
     <body>
-
-        <form class="joinchat" action="{{url_for('chat')}}" method="post">
-            <h2>Start Chatting!</h2>
-            <p>Insert a username and a room.</p>
-            <input type="text" id="username" name="username" placeholder="Username" required autofocus><br>
-            <input type="text" id="room" name="room" placeholder="Room" required><br>
-            <button value="submit">Start Chat</button>
-        </form>
+        <div id="joinchat">
+            <form action="{{url_for('chat')}}" method="post">
+                <h2>Start Chatting!</h2>
+                <p>Insert a username and a room.</p>
+                <input type="text" id="username" name="username" placeholder="Username" required autofocus><br>
+                <input type="text" id="room" name="room" placeholder="Room" required><br>
+                <button value="submit">Start Chat</button>
+            </form>
+        </div>
     </body>
 </html>
