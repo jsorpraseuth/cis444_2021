@@ -35,21 +35,40 @@
 				border-radius: 10px;
             }
 
+            .messages {
+                display: inline-block;
+            }
+
             input[type=text] {
-                width: 75%;
-                padding: 6px;
-                margin: 8px 0;
+                width: 63%;
+                padding: 8px;
+                margin-right: 4px;
                 outline: none;
             }
 
-            button {
+            input[type=submit] {
+                position: relative;
                 padding: 10px 25px;
 				font-weight: bold;
 				background: #ddd;
 				border: 0 none;
 				cursor: pointer;
-                margin-top: 5px;
 				border-radius: 5px;
+            }
+
+            button {
+                padding: 10px 15px;
+				font-weight: bold;
+				background: #ddd;
+				border: 0 none;
+				cursor: pointer;
+				border-radius: 5px;
+				float: right;
+				position: absolute;
+				right: 0;
+				top: 0;
+				margin-right: 10px;
+				margin-top: 10px;
             }
 
             h2 {
@@ -119,9 +138,12 @@
             <p>Click the text area and begin sending messages!</p>
             <form id="message_input_form">
                 <textarea readonly id="chat" cols="70" rows="10" placeholder="No messages have been sent yet!"></textarea><br>
-                <input type="text" id="message_input" placeholder="Enter your message here!"/>
-                <input type="submit" style="display:none"/>
+                <div id="messages">
+                    <input type="text" id="message_input" placeholder="Enter your message here!"/>
+                    <input type="submit" value="Send"/>
+                </div>
             </form>
+
             <button type="button" onclick=leave_room()>Leave Chat</button>
         </div>
     </body>
