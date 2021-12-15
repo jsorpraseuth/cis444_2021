@@ -5,7 +5,7 @@
 
         <style>
             body {
-                background: #53806d;
+                background: #5a706e;
                 font-family: Roboto Light;
             }
 
@@ -14,35 +14,42 @@
                 overflow: auto;
                 padding: 10px;
                 border-radius: 5px;
+                max-width: 100%;
+                max-height: 300px;
+                min-width: 25%;
+                min-height: 100px;
             }
 
-            .text-center {
-                border-radius: 5px;
-                padding: 1px;
-                position: absolute;
-                top: 20%;
-                left: 50%;
-                margin-right: -50%;
-                transform: translate(-50%, -50%)
+            .chatroom {
+                background: #f6f6f6;
+				margin-left: auto;
+				margin-right: auto;
+				margin-top: 200px;
+				position: relative;
+				z-index: 1;
+				max-width: 700px;
+                max-height: 500px;
+				padding: 45px;
+				text-align: center;
+				box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+				border-radius: 10px;
             }
 
             input[type=text] {
-                width: 97%;
+                width: 75%;
                 padding: 6px;
                 margin: 8px 0;
                 outline: none;
             }
 
             button {
-                font-family: Roboto Light;
-                position: absolute;
-                outline: none;
-                color: #000000;
-                text-decoration: none;
-                box-sizing: border-box;
-                border: 1px solid #2f2f2f;
-                background-color: #fff;
-                padding: 4px;
+                padding: 10px 25px;
+				font-weight: bold;
+				background: #ddd;
+				border: 0 none;
+				cursor: pointer;
+                margin-top: 5px;
+				border-radius: 5px;
             }
 
             h2 {
@@ -106,16 +113,16 @@
         </script>
     </head>
 
-    <body class="text-center">
-        <div>
-            <h2>Room : {{session['room']}}</h2>
+    <body>
+        <div class="chatroom">
+            <h2>Welcome to Room : {{session['room']}}</h2>
+            <p>Click the text area and begin sending messages!</p>
             <form id="message_input_form">
-                <textarea readonly id="chat" cols="70" rows="10" placeholder="There are no messages."></textarea><br>
-                <input type="text" id="message_input" placeholder="Enter your message here"/>
+                <textarea readonly id="chat" cols="70" rows="10" placeholder="No messages have been sent yet!"></textarea><br>
+                <input type="text" id="message_input" placeholder="Enter your message here!"/>
                 <input type="submit" style="display:none"/>
             </form>
-            <button type="button" onclick=leave_room()>Leave this Chat</button>
-            <input id="logOut" type="submit" value="Log Out" onclick="logout()">
+            <button type="button" onclick=leave_room()>Leave Chat</button>
         </div>
     </body>
 </html>
